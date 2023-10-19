@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://c4hb8f35j1qd1"]
+[gd_scene load_steps=6 format=3 uid="uid://c4hb8f35j1qd1"]
 
 [ext_resource type="Script" path="res://scenes/main_level.gd" id="1_qvpj3"]
 [ext_resource type="PackedScene" uid="uid://7avrct37qter" path="res://scenes/player/player.tscn" id="2_3uhr4"]
-[ext_resource type="Texture2D" uid="uid://dv0ffbba8j3t2" path="res://resources/sprites/temp/tempHouse.png" id="3_jy5qu"]
+[ext_resource type="Texture2D" uid="uid://c0y3a2psw65wm" path="res://resources/sprites/temp/house_temp.png" id="2_6hhe4"]
+[ext_resource type="AudioStream" uid="uid://n6er2yqtn2ph" path="res://resources/audio/bgm-test.wav" id="4_7i6ad"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6uj18"]
 size = Vector2(954, 20)
@@ -16,11 +17,15 @@ script = ExtResource("1_qvpj3")
 position = Vector2(8, 52)
 shape = SubResource("RectangleShape2D_6uj18")
 
-[node name="House" type="Sprite2D" parent="."]
-position = Vector2(-94, -97)
-scale = Vector2(0.715232, 0.715232)
-texture = ExtResource("3_jy5qu")
+[node name="HouseTemp" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(-103, -62)
+texture = ExtResource("2_6hhe4")
 
 [node name="Player" parent="." instance=ExtResource("2_3uhr4")]
-position = Vector2(-105, -12.3642)
+position = Vector2(-96, 30)
 scale = Vector2(0.715232, 0.715232)
+
+[node name="BGM_Player" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_7i6ad")
+autoplay = true
