@@ -1,9 +1,18 @@
-[gd_scene load_steps=6 format=3 uid="uid://c4hb8f35j1qd1"]
+[gd_scene load_steps=15 format=3 uid="uid://c4hb8f35j1qd1"]
 
 [ext_resource type="Script" path="res://scenes/main_level.gd" id="1_qvpj3"]
 [ext_resource type="PackedScene" uid="uid://7avrct37qter" path="res://scenes/player/player.tscn" id="2_3uhr4"]
-[ext_resource type="Texture2D" uid="uid://c0y3a2psw65wm" path="res://resources/sprites/temp/house_temp.png" id="2_6hhe4"]
-[ext_resource type="AudioStream" uid="uid://n6er2yqtn2ph" path="res://resources/audio/bgm-test.wav" id="4_7i6ad"]
+[ext_resource type="Texture2D" uid="uid://c6oqvpngjn6q1" path="res://resources/sprites/level/main_bg.png" id="2_dumlc"]
+[ext_resource type="AudioStream" uid="uid://cj2n7umdlxwx3" path="res://resources/audio/Black Cat  Halloween Autumn Lofi (Copyright Free Music).mp3" id="3_gknxu"]
+[ext_resource type="AudioStream" uid="uid://dw1yrii7ki7iy" path="res://resources/audio/Rain - Sound Effect (NoCopyright).mp3" id="3_jr6yj"]
+[ext_resource type="AudioStream" uid="uid://8d85p7p6wkle" path="res://resources/audio/Wind - Sound Effect (NoCopyright).mp3" id="4_7vppc"]
+[ext_resource type="Texture2D" uid="uid://bdmywcxoetpe1" path="res://resources/sprites/level/main_clouds.png" id="4_rnrkr"]
+[ext_resource type="Texture2D" uid="uid://bx40yl2nlfxjs" path="res://resources/sprites/level/main_grass.png" id="5_upxew"]
+[ext_resource type="AudioStream" uid="uid://cnkdu8u6t1xpm" path="res://resources/audio/Summer Wind Through Leaves Sound Effect  Copyright Free Nature Sounds.mp3" id="5_wpk5u"]
+[ext_resource type="Texture2D" uid="uid://dfvnguw7nc0ug" path="res://resources/sprites/level/main_moon.png" id="6_nmodi"]
+[ext_resource type="Texture2D" uid="uid://il1t50bts4yj" path="res://resources/sprites/level/main_interior_back_layer.png" id="7_fe2p8"]
+[ext_resource type="Texture2D" uid="uid://ci2hoqhhkll5s" path="res://resources/sprites/level/main_atmosphere.png" id="8_y1hry"]
+[ext_resource type="Texture2D" uid="uid://brt7fd1anjmn0" path="res://resources/sprites/level/main_interior_front_layer.png" id="9_xs7al"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6uj18"]
 size = Vector2(954, 20)
@@ -11,21 +20,60 @@ size = Vector2(954, 20)
 [node name="Main_Level" type="Node2D"]
 script = ExtResource("1_qvpj3")
 
+[node name="MainBg" type="Sprite2D" parent="."]
+texture_filter = 1
+texture = ExtResource("2_dumlc")
+
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2(8, 52)
+position = Vector2(6, 113)
 shape = SubResource("RectangleShape2D_6uj18")
 
-[node name="HouseTemp" type="Sprite2D" parent="."]
-texture_filter = 1
-position = Vector2(-103, -62)
-texture = ExtResource("2_6hhe4")
+[node name="BG_SFX_Rain" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_jr6yj")
+volume_db = -25.0
+autoplay = true
 
-[node name="Player" parent="." instance=ExtResource("2_3uhr4")]
-position = Vector2(-96, 30)
+[node name="BG_SFX_Wind" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_7vppc")
+volume_db = -25.0
+autoplay = true
+
+[node name="BG_SFX_WindLeaves" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_wpk5u")
+volume_db = -15.0
+autoplay = true
+
+[node name="BGM_Music" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_gknxu")
+volume_db = -80.0
+autoplay = true
+
+[node name="MainClouds" type="Sprite2D" parent="."]
+texture_filter = 1
+texture = ExtResource("4_rnrkr")
+
+[node name="MainGrass" type="Sprite2D" parent="."]
+texture_filter = 1
+texture = ExtResource("5_upxew")
+
+[node name="MainMoon" type="Sprite2D" parent="."]
+texture_filter = 1
+texture = ExtResource("6_nmodi")
+
+[node name="MainInteriorBackLayer" type="Sprite2D" parent="."]
+texture_filter = 1
+texture = ExtResource("7_fe2p8")
+
+[node name="Player" parent="MainInteriorBackLayer" instance=ExtResource("2_3uhr4")]
+position = Vector2(0, 93)
 scale = Vector2(0.715232, 0.715232)
 
-[node name="BGM_Player" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("4_7i6ad")
-autoplay = true
+[node name="MainInteriorFrontLayer" type="Sprite2D" parent="."]
+texture_filter = 1
+texture = ExtResource("9_xs7al")
+
+[node name="MainAtmosphere" type="Sprite2D" parent="."]
+texture_filter = 1
+texture = ExtResource("8_y1hry")

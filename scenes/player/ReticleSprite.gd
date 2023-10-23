@@ -1,15 +1,13 @@
-extends Node2D
+extends Sprite2D
 
-@export var sound_clip : AudioStream
+var smoothed_mouse_pos: Vector2
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	
-	var tween = create_tween()
-	tween.tween_property($BGM_Music, "volume_db", -20, 10)
 	pass # Replace with function body.
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
-	pass
+	smoothed_mouse_pos = lerp(smoothed_mouse_pos, get_global_mouse_position(), 0.05)
+	look_at(smoothed_mouse_pos)
