@@ -58,3 +58,9 @@ func _physics_process(delta):
 		velocity.x = move_toward(velocity.x, 0, FRICTION)
 
 	move_and_slide()
+
+
+func change_rooms(location: Vector2):
+	
+	TransitionLayer.in_out()
+	global_position = location

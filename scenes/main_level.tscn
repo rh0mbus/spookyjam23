@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://c4hb8f35j1qd1"]
+[gd_scene load_steps=18 format=3 uid="uid://c4hb8f35j1qd1"]
 
 [ext_resource type="Script" path="res://scenes/main_level.gd" id="1_qvpj3"]
 [ext_resource type="PackedScene" uid="uid://7avrct37qter" path="res://scenes/player/player.tscn" id="2_3uhr4"]
@@ -13,9 +13,13 @@
 [ext_resource type="Texture2D" uid="uid://il1t50bts4yj" path="res://resources/sprites/level/main_interior_back_layer.png" id="7_fe2p8"]
 [ext_resource type="Texture2D" uid="uid://ci2hoqhhkll5s" path="res://resources/sprites/level/main_atmosphere.png" id="8_y1hry"]
 [ext_resource type="Texture2D" uid="uid://brt7fd1anjmn0" path="res://resources/sprites/level/main_interior_front_layer.png" id="9_xs7al"]
+[ext_resource type="PackedScene" uid="uid://brtt5lg3544np" path="res://scenes/door_transition.tscn" id="14_eadeo"]
+[ext_resource type="Texture2D" uid="uid://qg3wm4teavqe" path="res://icon.svg" id="15_bd3a8"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6uj18"]
 size = Vector2(954, 20)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_1vtmv"]
 
 [node name="Main_Level" type="Node2D"]
 script = ExtResource("1_qvpj3")
@@ -67,7 +71,7 @@ texture_filter = 1
 texture = ExtResource("7_fe2p8")
 
 [node name="Player" parent="MainInteriorBackLayer" instance=ExtResource("2_3uhr4")]
-position = Vector2(0, 93)
+position = Vector2(-7, 95)
 scale = Vector2(0.715232, 0.715232)
 
 [node name="MainInteriorFrontLayer" type="Sprite2D" parent="."]
@@ -77,3 +81,22 @@ texture = ExtResource("9_xs7al")
 [node name="MainAtmosphere" type="Sprite2D" parent="."]
 texture_filter = 1
 texture = ExtResource("8_y1hry")
+
+[node name="KitchenDoor" parent="." node_paths=PackedStringArray("partner") instance=ExtResource("14_eadeo")]
+position = Vector2(-48, 93)
+partner = NodePath("../ClosetDoor")
+
+[node name="ClosetDoor" parent="." node_paths=PackedStringArray("partner") instance=ExtResource("14_eadeo")]
+position = Vector2(-58, 93)
+partner = NodePath("../KitchenDoor")
+
+[node name="RigidBody2D" type="RigidBody2D" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="RigidBody2D"]
+position = Vector2(-45, 68)
+scale = Vector2(0.12793, 0.148438)
+texture = ExtResource("15_bd3a8")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D"]
+position = Vector2(-44, 67)
+shape = SubResource("CircleShape2D_1vtmv")

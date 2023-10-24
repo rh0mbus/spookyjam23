@@ -30,8 +30,14 @@ position_smoothing_speed = 2.0
 rotation_smoothing_enabled = true
 
 [node name="ReticleSprite" type="Sprite2D" parent="."]
+z_index = 89
 texture_filter = 1
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("3_sboem")
 offset = Vector2(32, 0)
 script = ExtResource("4_ngr21")
+
+[node name="DoorTimer" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="timeout" from="DoorTimer" to="." method="_on_door_timer_timeout"]
