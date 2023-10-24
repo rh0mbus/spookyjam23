@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://c4hb8f35j1qd1"]
+[gd_scene load_steps=19 format=3 uid="uid://c4hb8f35j1qd1"]
 
 [ext_resource type="Script" path="res://scenes/main_level.gd" id="1_qvpj3"]
 [ext_resource type="PackedScene" uid="uid://7avrct37qter" path="res://scenes/player/player.tscn" id="2_3uhr4"]
@@ -17,6 +17,15 @@
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6uj18"]
 size = Vector2(954, 20)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_og8rx"]
+size = Vector2(2, 33)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dx581"]
+size = Vector2(1.99964, 160)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dk3vk"]
+size = Vector2(2, 69)
 
 [node name="Main_Level" type="Node2D"]
 script = ExtResource("1_qvpj3")
@@ -86,3 +95,73 @@ partner = NodePath("../ClosetDoor")
 [node name="ClosetDoor" parent="." node_paths=PackedStringArray("partner") instance=ExtResource("14_eadeo")]
 position = Vector2(-58, 93)
 partner = NodePath("../KitchenDoor")
+
+[node name="BlockingVolume" type="StaticBody2D" parent="."]
+position = Vector2(-53, 93)
+
+[node name="BoxCollider" type="CollisionShape2D" parent="BlockingVolume"]
+position = Vector2(0, -6.5)
+shape = SubResource("RectangleShape2D_og8rx")
+
+[node name="BlockingVolume4" type="StaticBody2D" parent="."]
+position = Vector2(27, 93)
+
+[node name="BoxCollider" type="CollisionShape2D" parent="BlockingVolume4"]
+position = Vector2(0, -6.5)
+shape = SubResource("RectangleShape2D_og8rx")
+
+[node name="BlockingVolume5" type="StaticBody2D" parent="."]
+position = Vector2(27, 59)
+
+[node name="BoxCollider" type="CollisionShape2D" parent="BlockingVolume5"]
+position = Vector2(0, -6.5)
+shape = SubResource("RectangleShape2D_og8rx")
+
+[node name="BlockingVolume6" type="StaticBody2D" parent="."]
+position = Vector2(-14, 59)
+
+[node name="BoxCollider" type="CollisionShape2D" parent="BlockingVolume6"]
+position = Vector2(0, -6.5)
+shape = SubResource("RectangleShape2D_og8rx")
+
+[node name="BlockingVolume7" type="StaticBody2D" parent="."]
+position = Vector2(-53, 24)
+
+[node name="BoxCollider" type="CollisionShape2D" parent="BlockingVolume7"]
+position = Vector2(0, -6.5)
+shape = SubResource("RectangleShape2D_og8rx")
+
+[node name="BlockingVolume8" type="StaticBody2D" parent="."]
+position = Vector2(27, 24)
+
+[node name="BoxCollider" type="CollisionShape2D" parent="BlockingVolume8"]
+position = Vector2(0, -6.5)
+shape = SubResource("RectangleShape2D_og8rx")
+
+[node name="BlockingVolume9" type="StaticBody2D" parent="."]
+position = Vector2(-14, 34)
+
+[node name="BoxCollider" type="CollisionShape2D" parent="BlockingVolume9"]
+rotation = 1.57079
+shape = SubResource("RectangleShape2D_dx581")
+
+[node name="BlockingVolume10" type="StaticBody2D" parent="."]
+position = Vector2(-13, 69)
+
+[node name="BoxCollider" type="CollisionShape2D" parent="BlockingVolume10"]
+rotation = 1.57079
+shape = SubResource("RectangleShape2D_dx581")
+
+[node name="BlockingVolume2" type="StaticBody2D" parent="."]
+position = Vector2(-93, 93)
+
+[node name="BoxCollider" type="CollisionShape2D" parent="BlockingVolume2"]
+position = Vector2(0, -24.5)
+shape = SubResource("RectangleShape2D_dk3vk")
+
+[node name="BlockingVolume3" type="StaticBody2D" parent="."]
+position = Vector2(67, 93)
+
+[node name="BoxCollider" type="CollisionShape2D" parent="BlockingVolume3"]
+position = Vector2(0, -24.5)
+shape = SubResource("RectangleShape2D_dk3vk")
