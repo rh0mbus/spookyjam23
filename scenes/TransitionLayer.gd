@@ -12,3 +12,6 @@ func fade_out():
 
 func in_out():
 	$AnimationPlayer.play("in-out")
+
+func change_rooms():
+	pass

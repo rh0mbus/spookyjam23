@@ -1,0 +1,89 @@
+[gd_scene load_steps=7 format=3 uid="uid://c0webf0yy7m0w"]
+
+[ext_resource type="Script" path="res://scenes/main_menu.gd" id="1_3nxeg"]
+[ext_resource type="Texture2D" uid="uid://oen2kgdplnro" path="res://resources/sprites/menu/main_menu.png" id="1_vevpp"]
+[ext_resource type="FontFile" uid="uid://cv25gg3nbtxl" path="res://resources/fonts/Pixeltype.ttf" id="3_1luv4"]
+[ext_resource type="Texture2D" uid="uid://bf0kcoaeh0je5" path="res://resources/sprites/menu/button.png" id="3_752gw"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_s7a1e"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_7q6ej"]
+
+[node name="MainMenu" type="Node2D"]
+script = ExtResource("1_3nxeg")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(128, -128)
+texture = ExtResource("1_vevpp")
+
+[node name="Menu" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -155.0
+offset_right = 256.0
+grow_vertical = 0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+mouse_filter = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Menu"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 15.0
+offset_top = -65.0
+offset_right = 55.0
+offset_bottom = -19.0
+grow_vertical = 0
+scale = Vector2(0.75, 0.75)
+
+[node name="PlayButton" type="Button" parent="Menu/VBoxContainer"]
+texture_filter = 1
+layout_mode = 2
+theme_override_colors/font_hover_color = Color(1, 0.737255, 0.313726, 1)
+theme_override_fonts/font = ExtResource("3_1luv4")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_s7a1e")
+text = "Play
+"
+icon = ExtResource("3_752gw")
+flat = true
+icon_alignment = 1
+
+[node name="QuitButton" type="Button" parent="Menu/VBoxContainer"]
+texture_filter = 1
+layout_mode = 2
+theme_override_colors/font_hover_color = Color(1, 0.737255, 0.313726, 1)
+theme_override_fonts/font = ExtResource("3_1luv4")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_7q6ej")
+text = "Quit"
+icon = ExtResource("3_752gw")
+flat = true
+icon_alignment = 1
+
+[node name="Label" type="Label" parent="Menu"]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -163.0
+offset_top = 28.0
+offset_right = -86.0
+offset_bottom = 51.0
+grow_horizontal = 0
+scale = Vector2(2, 2)
+theme_override_colors/font_color = Color(0.501961, 0.427451, 0.568627, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.423529)
+theme_override_fonts/font = ExtResource("3_1luv4")
+text = "The After Party"
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(128, -84)
+zoom = Vector2(3.75, 3.75)
+
+[connection signal="pressed" from="Menu/VBoxContainer/PlayButton" to="." method="_on_play_button_pressed"]
+[connection signal="pressed" from="Menu/VBoxContainer/QuitButton" to="." method="_on_quit_button_pressed"]

@@ -1,11 +1,11 @@
-[gd_scene load_steps=3 format=3 uid="uid://brtt5lg3544np"]
+[gd_scene load_steps=3 format=3 uid="uid://cs6uf3vb662st"]
 
 [ext_resource type="Script" path="res://DoorTransition.gd" id="1_2mero"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_av02c"]
 size = Vector2(4, 20)
 
-[node name="DoorTransition" type="Area2D"]
+[node name="DoorTransition" type="Area2D" groups=["door_entry"]]
 script = ExtResource("1_2mero")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

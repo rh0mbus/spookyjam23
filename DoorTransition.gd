@@ -1,5 +1,7 @@
 extends Area2D
 
+signal player_entered_door_area(target_pos)
+
 @export var partner: Area2D
 
 # Called when the node enters the scene tree for the first time.
@@ -8,7 +10,7 @@ func _ready():
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
+func _process(_delta):
 	pass
 
 func show_open_door_text():
@@ -17,4 +19,4 @@ func show_open_door_text():
 
 func _on_body_entered(body):
 	if "change_rooms" in body:
-		print("its the player")
+		player_entered_door_area.emit(partner.global_position)
