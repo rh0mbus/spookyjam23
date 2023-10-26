@@ -1,0 +1,17 @@
+[gd_scene format=3 uid="uid://cn2s4k06jc5o2"]
+
+[node name="FallingLeaves" type="CPUParticles2D"]
+modulate = Color(0.662745, 0.337255, 0.164706, 1)
+amount = 30
+lifetime = 20.0
+randomness = 0.2
+emission_shape = 3
+emission_rect_extents = Vector2(128, 64)
+direction = Vector2(4.045, 0)
+gravity = Vector2(0, 40)
+angular_velocity_min = -76.69
+angular_velocity_max = 68.17
+orbit_velocity_min = 0.1
+orbit_velocity_max = 0.1
+scale_amount_min = 0.6
+scale_amount_max = 0.8

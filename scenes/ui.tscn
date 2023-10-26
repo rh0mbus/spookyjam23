@@ -33,6 +33,7 @@ grow_vertical = 0
 alignment = 1
 
 [node name="Label" type="Label" parent="InteractText/VBoxContainer"]
+visible = false
 texture_filter = 1
 layout_mode = 2
 text = "'E' TO INTERACT"

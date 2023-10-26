@@ -81,3 +81,7 @@ func enable_interact_ui():
 func disable_interact_ui():
 	is_able_to_change_rooms = false
 	$UI.disable_interact_text()
+
+
+func _on_door_timer_timeout():
+	pass # Replace with function body.
