@@ -89,22 +89,74 @@ texture_filter = 1
 texture = ExtResource("8_y1hry")
 
 [node name="KitchenDoor" parent="." node_paths=PackedStringArray("partner") instance=ExtResource("14_eadeo")]
-position = Vector2(-48, 93)
+position = Vector2(-51, 93)
+scale = Vector2(0.44, 0.969483)
 partner = NodePath("../ClosetDoor")
 
+[node name="KitchenDoorToStairs" parent="." node_paths=PackedStringArray("partner") instance=ExtResource("14_eadeo")]
+position = Vector2(-7.47194, 93.882)
+scale = Vector2(3.07196, 0.907373)
+partner = NodePath("../StairsToKitchen")
+
+[node name="StairsToKitchen" parent="." node_paths=PackedStringArray("partner") instance=ExtResource("14_eadeo")]
+position = Vector2(16, 59)
+scale = Vector2(0.854147, 0.907373)
+partner = NodePath("../KitchenDoorToStairs")
+
+[node name="DoorToLibrary" parent="." node_paths=PackedStringArray("partner") instance=ExtResource("14_eadeo")]
+position = Vector2(25, 59)
+scale = Vector2(0.494148, 0.907373)
+partner = NodePath("../LibraryDoorToStairs")
+
+[node name="DoorToBedroom" parent="." node_paths=PackedStringArray("partner") instance=ExtResource("14_eadeo")]
+position = Vector2(-12, 59)
+scale = Vector2(0.494148, 0.907373)
+partner = NodePath("../BedroomDoorToStairs")
+
+[node name="BedroomDoorToStairs" parent="." node_paths=PackedStringArray("partner") instance=ExtResource("14_eadeo")]
+position = Vector2(-16, 59)
+scale = Vector2(0.494148, 0.907373)
+partner = NodePath("../DoorToBedroom")
+
+[node name="LibraryDoorToStairs" parent="." node_paths=PackedStringArray("partner") instance=ExtResource("14_eadeo")]
+position = Vector2(29, 59)
+scale = Vector2(0.494148, 0.907373)
+partner = NodePath("../DoorToLibrary")
+
 [node name="ClosetDoor" parent="." node_paths=PackedStringArray("partner") instance=ExtResource("14_eadeo")]
-position = Vector2(-58, 93)
+position = Vector2(-55, 93)
+scale = Vector2(0.44, 1)
 partner = NodePath("../KitchenDoor")
+
+[node name="KitchenToLaundry" parent="." node_paths=PackedStringArray("partner") instance=ExtResource("14_eadeo")]
+position = Vector2(25, 93)
+scale = Vector2(0.44, 1)
+partner = NodePath("../LaundryToKitchen")
+
+[node name="LaundryToKitchen" parent="." node_paths=PackedStringArray("partner") instance=ExtResource("14_eadeo")]
+position = Vector2(29, 93)
+scale = Vector2(0.44, 1)
+partner = NodePath("../KitchenToLaundry")
+
+[node name="LaundryToGarage" parent="." node_paths=PackedStringArray("partner") instance=ExtResource("14_eadeo")]
+position = Vector2(65, 93)
+scale = Vector2(0.44, 1)
+partner = NodePath("../GarageToLaundry")
+
+[node name="GarageToLaundry" parent="." node_paths=PackedStringArray("partner") instance=ExtResource("14_eadeo")]
+position = Vector2(69, 93)
+scale = Vector2(0.44, 1)
+partner = NodePath("../LaundryToGarage")
 
 [node name="BedroomAtticDoor" parent="." node_paths=PackedStringArray("partner") instance=ExtResource("14_eadeo")]
 position = Vector2(-36.4049, 56.9533)
-scale = Vector2(4.15526, 1.09966)
-partner = NodePath("../KitchenDoor")
+scale = Vector2(3.25045, 1.09966)
+partner = NodePath("../AtticDoor")
 
 [node name="AtticDoor" parent="." node_paths=PackedStringArray("partner") instance=ExtResource("14_eadeo")]
 position = Vector2(-36, 22)
-scale = Vector2(4.15526, 1.09966)
-partner = NodePath("../KitchenDoor")
+scale = Vector2(3.11526, 1.09966)
+partner = NodePath("../BedroomAtticDoor")
 
 [node name="BlockingVolume" type="StaticBody2D" parent="."]
 position = Vector2(-53, 93)
@@ -182,5 +234,3 @@ position = Vector2(67, 93)
 [node name="BoxCollider" type="CollisionShape2D" parent="BlockingVolume3"]
 position = Vector2(0, -24.5)
 shape = SubResource("RectangleShape2D_dk3vk")
-
-[connection signal="player_entered_door_area" from="KitchenDoor" to="." method="_on_kitchen_door_player_entered_door_area"]

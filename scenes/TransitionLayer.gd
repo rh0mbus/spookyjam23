@@ -14,4 +14,4 @@ func in_out():
 	$AnimationPlayer.play("in-out")
 
 func change_rooms():
-	pass
+	$AnimationPlayer.play("change_rooms")

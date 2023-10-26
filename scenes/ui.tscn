@@ -1,11 +1,13 @@
-[gd_scene load_steps=3 format=3 uid="uid://brdxdaylj1jb5"]
+[gd_scene load_steps=4 format=3 uid="uid://brdxdaylj1jb5"]
 
+[ext_resource type="Script" path="res://scenes/ui.gd" id="1_bx1as"]
 [ext_resource type="FontFile" uid="uid://cv25gg3nbtxl" path="res://resources/fonts/Pixeltype.ttf" id="1_vttqx"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_rqiet"]
 font = ExtResource("1_vttqx")
 
 [node name="UI" type="CanvasLayer"]
+script = ExtResource("1_bx1as")
 
 [node name="InteractText" type="Control" parent="."]
 layout_mode = 3

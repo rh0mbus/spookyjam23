@@ -65,9 +65,19 @@ func _physics_process(delta):
 
 
 func set_room_target(location: Vector2):
+	enable_interact_ui()
 	is_able_to_change_rooms = true
-	TransitionLayer.change_rooms()
 	target_room_location = location
 
 func change_rooms():
+	TransitionLayer.change_rooms()
+	$DoorTimer.start()
+	await $DoorTimer.timeout
 	global_position = target_room_location
+	
+func enable_interact_ui():
+	$UI.enable_interact_text()
+
+func disable_interact_ui():
+	is_able_to_change_rooms = false
+	$UI.disable_interact_text()
