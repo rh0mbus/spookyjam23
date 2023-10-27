@@ -1,19 +1,20 @@
-[gd_scene load_steps=21 format=3 uid="uid://c4hb8f35j1qd1"]
+[gd_scene load_steps=22 format=3 uid="uid://c4hb8f35j1qd1"]
 
 [ext_resource type="Script" path="res://scenes/main_level.gd" id="1_qvpj3"]
 [ext_resource type="PackedScene" uid="uid://7avrct37qter" path="res://scenes/player/player.tscn" id="2_3uhr4"]
-[ext_resource type="Texture2D" uid="uid://c6oqvpngjn6q1" path="res://resources/sprites/level/main_bg.png" id="2_dumlc"]
+[ext_resource type="Texture2D" uid="uid://ylqxf5t675rj" path="res://resources/sprites/level/background_layer.png" id="2_pktxd"]
 [ext_resource type="AudioStream" uid="uid://cj2n7umdlxwx3" path="res://resources/audio/Black Cat  Halloween Autumn Lofi (Copyright Free Music).mp3" id="3_gknxu"]
 [ext_resource type="AudioStream" uid="uid://dw1yrii7ki7iy" path="res://resources/audio/Rain - Sound Effect (NoCopyright).mp3" id="3_jr6yj"]
 [ext_resource type="AudioStream" uid="uid://8d85p7p6wkle" path="res://resources/audio/Wind - Sound Effect (NoCopyright).mp3" id="4_7vppc"]
 [ext_resource type="Texture2D" uid="uid://bdmywcxoetpe1" path="res://resources/sprites/level/main_clouds.png" id="4_rnrkr"]
-[ext_resource type="Texture2D" uid="uid://bx40yl2nlfxjs" path="res://resources/sprites/level/main_grass.png" id="5_upxew"]
 [ext_resource type="AudioStream" uid="uid://cnkdu8u6t1xpm" path="res://resources/audio/Summer Wind Through Leaves Sound Effect  Copyright Free Nature Sounds.mp3" id="5_wpk5u"]
-[ext_resource type="Texture2D" uid="uid://dfvnguw7nc0ug" path="res://resources/sprites/level/main_moon.png" id="6_nmodi"]
-[ext_resource type="Texture2D" uid="uid://il1t50bts4yj" path="res://resources/sprites/level/main_interior_back_layer.png" id="7_fe2p8"]
+[ext_resource type="Texture2D" uid="uid://4b4jk2a3v1dp" path="res://resources/sprites/level/main_interior_back_layer.png" id="7_fe2p8"]
 [ext_resource type="Texture2D" uid="uid://ci2hoqhhkll5s" path="res://resources/sprites/level/main_atmosphere.png" id="8_y1hry"]
 [ext_resource type="Texture2D" uid="uid://brt7fd1anjmn0" path="res://resources/sprites/level/main_interior_front_layer.png" id="9_xs7al"]
+[ext_resource type="PackedScene" uid="uid://ckjfs513c26o2" path="res://scenes/monsters/bat.tscn" id="10_nmxay"]
+[ext_resource type="Texture2D" uid="uid://blknqr65affyb" path="res://resources/sprites/level/pumpkins_3.png" id="12_yvugb"]
 [ext_resource type="PackedScene" uid="uid://cs6uf3vb662st" path="res://scenes/door_transition.tscn" id="14_eadeo"]
+[ext_resource type="Texture2D" uid="uid://bm30mikn0onlp" path="res://resources/sprites/level/pumpkins_1.png" id="15_ketov"]
 [ext_resource type="PackedScene" uid="uid://b5yjygm4kj10f" path="res://scenes/simple_rain.tscn" id="15_sh5ol"]
 [ext_resource type="PackedScene" uid="uid://cn2s4k06jc5o2" path="res://scenes/falling_leaves.tscn" id="16_xk0bw"]
 
@@ -32,9 +33,9 @@ size = Vector2(2, 69)
 [node name="Main_Level" type="Node2D"]
 script = ExtResource("1_qvpj3")
 
-[node name="MainBg" type="Sprite2D" parent="."]
+[node name="BackgroundLayer" type="Sprite2D" parent="."]
 texture_filter = 1
-texture = ExtResource("2_dumlc")
+texture = ExtResource("2_pktxd")
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 position = Vector2(-3.1748, 0.0566597)
@@ -67,25 +68,31 @@ autoplay = true
 texture_filter = 1
 texture = ExtResource("4_rnrkr")
 
-[node name="MainGrass" type="Sprite2D" parent="."]
-texture_filter = 1
-texture = ExtResource("5_upxew")
-
-[node name="MainMoon" type="Sprite2D" parent="."]
-texture_filter = 1
-texture = ExtResource("6_nmodi")
-
 [node name="MainInteriorBackLayer" type="Sprite2D" parent="."]
 texture_filter = 1
 texture = ExtResource("7_fe2p8")
 
 [node name="Player" parent="MainInteriorBackLayer" instance=ExtResource("2_3uhr4")]
-position = Vector2(-22.8127, 94.6555)
+position = Vector2(-19.3818, 95)
 scale = Vector2(0.715232, 0.715232)
+
+[node name="Bat" parent="MainInteriorBackLayer/Player" instance=ExtResource("10_nmxay")]
+position = Vector2(-139.281, -6.99075)
 
 [node name="MainInteriorFrontLayer" type="Sprite2D" parent="."]
 texture_filter = 1
 texture = ExtResource("9_xs7al")
+
+[node name="Pumpkins1" type="Sprite2D" parent="MainInteriorFrontLayer"]
+texture_filter = 1
+position = Vector2(-35, 90.3341)
+scale = Vector2(0.640001, 0.68)
+texture = ExtResource("15_ketov")
+
+[node name="Pumpkins3" type="Sprite2D" parent="MainInteriorFrontLayer"]
+texture_filter = 1
+position = Vector2(48, 58)
+texture = ExtResource("12_yvugb")
 
 [node name="MainAtmosphere" type="Sprite2D" parent="."]
 texture_filter = 1
@@ -211,14 +218,14 @@ position = Vector2(0, -6.5)
 shape = SubResource("RectangleShape2D_og8rx")
 
 [node name="BlockingVolume9" type="StaticBody2D" parent="."]
-position = Vector2(-14, 34)
+position = Vector2(-13.9896, 34.0521)
 
 [node name="BoxCollider" type="CollisionShape2D" parent="BlockingVolume9"]
 rotation = 1.57079
 shape = SubResource("RectangleShape2D_dx581")
 
 [node name="BlockingVolume10" type="StaticBody2D" parent="."]
-position = Vector2(-13, 69)
+position = Vector2(-13, 69.0614)
 
 [node name="BoxCollider" type="CollisionShape2D" parent="BlockingVolume10"]
 rotation = 1.57079
@@ -239,7 +246,7 @@ position = Vector2(0, -24.5)
 shape = SubResource("RectangleShape2D_dk3vk")
 
 [node name="SimpleRain" parent="." instance=ExtResource("15_sh5ol")]
-position = Vector2(16.9566, -198.314)
+position = Vector2(-0.0530939, -62.0542)
 scale = Vector2(-1.76, 1)
 amount = 45
 scale_amount_min = 0.1

@@ -1,0 +1,56 @@
+[gd_scene load_steps=6 format=3 uid="uid://ckjfs513c26o2"]
+
+[ext_resource type="Script" path="res://scenes/monsters/bat.gd" id="1_dsaie"]
+[ext_resource type="Texture2D" uid="uid://wbn6hh4ufqr6" path="res://resources/sprites/monsters/bat.png" id="1_nnv02"]
+
+[sub_resource type="Animation" id="Animation_r65yk"]
+resource_name = "Fly"
+length = 0.5
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [0, 1]
+}
+
+[sub_resource type="Animation" id="Animation_uiah7"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_4siqv"]
+_data = {
+"Fly": SubResource("Animation_r65yk"),
+"RESET": SubResource("Animation_uiah7")
+}
+
+[node name="Bat" type="Node2D"]
+script = ExtResource("1_dsaie")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+texture = ExtResource("1_nnv02")
+hframes = 2
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "Fly"
+libraries = {
+"": SubResource("AnimationLibrary_4siqv")
+}

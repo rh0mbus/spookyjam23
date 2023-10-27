@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://4b4jk2a3v1dp"
-path="res://.godot/imported/main_interior_back_layer.png-aa7b4e96cb9e1e5a64b38be2f6a179d4.ctex"
+uid="uid://wbn6hh4ufqr6"
+path="res://.godot/imported/bat.png-2684d0678b62911209ac56fe42e632f6.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://resources/sprites/level/main_interior_back_layer.png"
-dest_files=["res://.godot/imported/main_interior_back_layer.png-aa7b4e96cb9e1e5a64b38be2f6a179d4.ctex"]
+source_file="res://resources/sprites/monsters/bat.png"
+dest_files=["res://.godot/imported/bat.png-2684d0678b62911209ac56fe42e632f6.ctex"]
 
 [params]
 

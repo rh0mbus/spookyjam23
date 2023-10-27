@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://4b4jk2a3v1dp"
-path="res://.godot/imported/main_interior_back_layer.png-aa7b4e96cb9e1e5a64b38be2f6a179d4.ctex"
+uid="uid://dde3w0n637pye"
+path="res://.godot/imported/pumpkins_2.png-665e20ecb4e068f19442a989548fb0d0.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://resources/sprites/level/main_interior_back_layer.png"
-dest_files=["res://.godot/imported/main_interior_back_layer.png-aa7b4e96cb9e1e5a64b38be2f6a179d4.ctex"]
+source_file="res://resources/sprites/level/pumpkins_2.png"
+dest_files=["res://.godot/imported/pumpkins_2.png-665e20ecb4e068f19442a989548fb0d0.ctex"]
 
 [params]
 
