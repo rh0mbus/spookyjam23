@@ -1,11 +1,14 @@
-[gd_scene load_steps=3 format=3 uid="uid://h1akmn6usryf"]
+[gd_scene load_steps=5 format=3 uid="uid://h1akmn6usryf"]
 
 [ext_resource type="Texture2D" uid="uid://erumccuc2s2q" path="res://resources/sprites/items/weapon_safe.png" id="1_eoole"]
+[ext_resource type="Script" path="res://scenes/items/weapon_safe.gd" id="1_subkr"]
+[ext_resource type="AudioStream" uid="uid://cg8pdia7g612r" path="res://resources/audio/freesound__jawbutch__metal-container-shut.mp3" id="3_m4dha"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_j02b2"]
 size = Vector2(12, 16)
 
 [node name="weapon_safe" type="Area2D"]
+script = ExtResource("1_subkr")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_j02b2")
@@ -13,3 +16,10 @@ shape = SubResource("RectangleShape2D_j02b2")
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture_filter = 1
 texture = ExtResource("1_eoole")
+
+[node name="OpenSoundStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_m4dha")
+volume_db = 5.0
+pitch_scale = 0.8
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

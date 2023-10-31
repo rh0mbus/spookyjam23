@@ -129,3 +129,7 @@ func _on_bgm_music_finished():
 	$Audio/BGM_Music.stream = song_array.pick_random()
 	print($Audio/BGM_Music.stream.resource_name) # TODO Update UI
 	$Audio/BGM_Music.play()
+
+
+func _on_weapon_safe_player_opened_safe():
+	$Player.give_weapons()

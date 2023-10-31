@@ -289,4 +289,5 @@ position = Vector2(12.7876, -52.0906)
 amount = 15
 emission_rect_extents = Vector2(128, 1)
 
+[connection signal="player_opened_safe" from="weapon_safe" to="." method="_on_weapon_safe_player_opened_safe"]
 [connection signal="finished" from="Audio/BGM_Music" to="." method="_on_bgm_music_finished"]

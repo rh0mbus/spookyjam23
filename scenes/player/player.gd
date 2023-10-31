@@ -14,6 +14,10 @@ var target_room_location: Vector2
 
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
+var is_player_armed: bool = false
+var pistol_ammo: int = 18
+var shotgun_ammo: int = 6
+
 func _ready():
 	$ReticleSprite.visible = false
 
@@ -31,8 +35,8 @@ func _process(_delta):
 		
 	if Input.is_action_just_released("sprint"):
 		speed = 20.0
-		
-	if Input.is_action_just_pressed("select_weapon_1"):
+	
+	if is_player_armed and Input.is_action_just_pressed("select_weapon_1"):
 		print("pressed 1")
 		is_weapon_equipped = !is_weapon_equipped
 		print(is_weapon_equipped)
@@ -83,6 +87,8 @@ func disable_interact_ui():
 	is_able_to_change_rooms = false
 	$UI.disable_interact_text()
 
+func give_weapons():
+	is_player_armed = true
 
 func _on_door_timer_timeout():
 	pass # Replace with function body.
