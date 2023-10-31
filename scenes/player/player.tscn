@@ -1,10 +1,11 @@
-[gd_scene load_steps=7 format=3 uid="uid://7avrct37qter"]
+[gd_scene load_steps=8 format=3 uid="uid://7avrct37qter"]
 
 [ext_resource type="Script" path="res://scenes/player/player.gd" id="1_r4qlo"]
 [ext_resource type="Texture2D" uid="uid://crftmfa4pbxp4" path="res://resources/sprites/player.png" id="2_ea5wo"]
 [ext_resource type="Texture2D" uid="uid://bopypor7fn3mn" path="res://resources/crosshair.png" id="3_sboem"]
 [ext_resource type="Script" path="res://scenes/player/ReticleSprite.gd" id="4_ngr21"]
 [ext_resource type="PackedScene" uid="uid://brdxdaylj1jb5" path="res://scenes/ui.tscn" id="5_dykbu"]
+[ext_resource type="AudioStream" uid="uid://b0m6hr0ue83sj" path="res://resources/audio/Free Door open sound effect.mp3" id="6_lg7y5"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_vwi45"]
 radius = 4.0
@@ -44,5 +45,9 @@ wait_time = 0.2
 one_shot = true
 
 [node name="UI" parent="." instance=ExtResource("5_dykbu")]
+
+[node name="DoorSFXPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_lg7y5")
+volume_db = -30.0
 
 [connection signal="timeout" from="DoorTimer" to="." method="_on_door_timer_timeout"]

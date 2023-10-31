@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://tojlp70e83yt"
+path="res://.godot/imported/Ominous Owls  - Panda Beats.mp3-3dc4dccdf05810c1dab02c46b967d397.mp3str"
+
+[deps]
+
+source_file="res://resources/audio/Ominous Owls  - Panda Beats.mp3"
+dest_files=["res://.godot/imported/Ominous Owls  - Panda Beats.mp3-3dc4dccdf05810c1dab02c46b967d397.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://b0m6hr0ue83sj"
+path="res://.godot/imported/Free Door open sound effect.mp3-d7faaf9667fff5dcd1ce4a55b55af038.mp3str"
+
+[deps]
+
+source_file="res://resources/audio/Free Door open sound effect.mp3"
+dest_files=["res://.godot/imported/Free Door open sound effect.mp3-d7faaf9667fff5dcd1ce4a55b55af038.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

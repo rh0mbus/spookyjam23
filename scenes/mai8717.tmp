@@ -1,0 +1,286 @@
+[gd_scene load_steps=21 format=3 uid="uid://c4hb8f35j1qd1"]
+
+[ext_resource type="Script" path="res://scenes/main_level.gd" id="1_qvpj3"]
+[ext_resource type="PackedScene" uid="uid://7avrct37qter" path="res://scenes/player/player.tscn" id="2_3uhr4"]
+[ext_resource type="Texture2D" uid="uid://ylqxf5t675rj" path="res://resources/sprites/level/background_layer.png" id="2_pktxd"]
+[ext_resource type="AudioStream" uid="uid://cj2n7umdlxwx3" path="res://resources/audio/Black Cat  Halloween Autumn Lofi (Copyright Free Music).mp3" id="3_gknxu"]
+[ext_resource type="AudioStream" uid="uid://dw1yrii7ki7iy" path="res://resources/audio/Rain - Sound Effect (NoCopyright).mp3" id="3_jr6yj"]
+[ext_resource type="AudioStream" uid="uid://8d85p7p6wkle" path="res://resources/audio/Wind - Sound Effect (NoCopyright).mp3" id="4_7vppc"]
+[ext_resource type="Texture2D" uid="uid://bdmywcxoetpe1" path="res://resources/sprites/level/main_clouds.png" id="4_rnrkr"]
+[ext_resource type="AudioStream" uid="uid://cnkdu8u6t1xpm" path="res://resources/audio/Summer Wind Through Leaves Sound Effect  Copyright Free Nature Sounds.mp3" id="5_wpk5u"]
+[ext_resource type="Texture2D" uid="uid://4b4jk2a3v1dp" path="res://resources/sprites/level/main_interior_back_layer.png" id="7_fe2p8"]
+[ext_resource type="Texture2D" uid="uid://ci2hoqhhkll5s" path="res://resources/sprites/level/main_atmosphere.png" id="8_y1hry"]
+[ext_resource type="Texture2D" uid="uid://brt7fd1anjmn0" path="res://resources/sprites/level/main_interior_front_layer.png" id="9_xs7al"]
+[ext_resource type="Texture2D" uid="uid://blknqr65affyb" path="res://resources/sprites/level/pumpkins_3.png" id="12_yvugb"]
+[ext_resource type="PackedScene" uid="uid://cs6uf3vb662st" path="res://scenes/door_transition.tscn" id="14_eadeo"]
+[ext_resource type="Texture2D" uid="uid://bm30mikn0onlp" path="res://resources/sprites/level/pumpkins_1.png" id="15_ketov"]
+[ext_resource type="PackedScene" uid="uid://b5yjygm4kj10f" path="res://scenes/simple_rain.tscn" id="15_sh5ol"]
+[ext_resource type="PackedScene" uid="uid://cn2s4k06jc5o2" path="res://scenes/falling_leaves.tscn" id="16_xk0bw"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_og8rx"]
+size = Vector2(2, 33)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dx581"]
+size = Vector2(1.99964, 160)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dk3vk"]
+size = Vector2(2, 69)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6uj18"]
+size = Vector2(954, 20)
+
+[node name="Main_Level" type="Node2D"]
+script = ExtResource("1_qvpj3")
+
+[node name="BackgroundLayer" type="Sprite2D" parent="."]
+texture_filter = 1
+texture = ExtResource("2_pktxd")
+
+[node name="MainClouds" type="Sprite2D" parent="."]
+texture_filter = 1
+texture = ExtResource("4_rnrkr")
+
+[node name="BatSpawnMarker" type="Marker2D" parent="."]
+position = Vector2(-93, 6)
+
+[node name="MainInteriorBackLayer" type="Sprite2D" parent="."]
+texture_filter = 1
+texture = ExtResource("7_fe2p8")
+
+[node name="Pumpkins3" type="Sprite2D" parent="MainInteriorBackLayer"]
+texture_filter = 1
+position = Vector2(48, 58)
+texture = ExtResource("12_yvugb")
+
+[node name="GhoulSpawnMarker" type="Marker2D" parent="."]
+position = Vector2(63, 43)
+
+[node name="GhostSpawnMarker" type="Marker2D" parent="."]
+position = Vector2(-132, 53)
+
+[node name="Player" parent="." instance=ExtResource("2_3uhr4")]
+position = Vector2(-19.3818, 95)
+scale = Vector2(0.715232, 0.715232)
+
+[node name="MainInteriorFrontLayer" type="Sprite2D" parent="."]
+texture_filter = 1
+texture = ExtResource("9_xs7al")
+
+[node name="Pumpkins1" type="Sprite2D" parent="MainInteriorFrontLayer"]
+texture_filter = 1
+position = Vector2(-35, 90.3341)
+scale = Vector2(0.640001, 0.68)
+texture = ExtResource("15_ketov")
+
+[node name="MainAtmosphere" type="Sprite2D" parent="."]
+texture_filter = 1
+texture = ExtResource("8_y1hry")
+
+[node name="Audio" type="Node2D" parent="."]
+
+[node name="BG_SFX_Rain" type="AudioStreamPlayer" parent="Audio"]
+stream = ExtResource("3_jr6yj")
+volume_db = -25.0
+autoplay = true
+
+[node name="BG_SFX_Wind" type="AudioStreamPlayer" parent="Audio"]
+stream = ExtResource("4_7vppc")
+volume_db = -25.0
+autoplay = true
+
+[node name="BG_SFX_WindLeaves" type="AudioStreamPlayer" parent="Audio"]
+stream = ExtResource("5_wpk5u")
+volume_db = -15.0
+autoplay = true
+
+[node name="BGM_Music" type="AudioStreamPlayer" parent="Audio"]
+stream = ExtResource("3_gknxu")
+volume_db = -80.0
+autoplay = true
+
+[node name="Doors" type="Node2D" parent="."]
+
+[node name="KitchenDoor" parent="Doors" node_paths=PackedStringArray("partner") instance=ExtResource("14_eadeo")]
+position = Vector2(-51, 93)
+scale = Vector2(0.44, 0.969483)
+partner = NodePath("../ClosetDoor")
+
+[node name="KitchenDoorToStairs" parent="Doors" node_paths=PackedStringArray("partner") instance=ExtResource("14_eadeo")]
+position = Vector2(-7.47194, 93.882)
+scale = Vector2(3.07196, 0.907373)
+partner = NodePath("../StairsToKitchen")
+
+[node name="StairsToKitchen" parent="Doors" node_paths=PackedStringArray("partner") instance=ExtResource("14_eadeo")]
+position = Vector2(16, 59)
+scale = Vector2(0.854147, 0.907373)
+partner = NodePath("../KitchenDoorToStairs")
+
+[node name="DoorToLibrary" parent="Doors" node_paths=PackedStringArray("partner") instance=ExtResource("14_eadeo")]
+position = Vector2(25, 59)
+scale = Vector2(0.494148, 0.907373)
+partner = NodePath("../LibraryDoorToStairs")
+
+[node name="DoorToBedroom" parent="Doors" node_paths=PackedStringArray("partner") instance=ExtResource("14_eadeo")]
+position = Vector2(-12, 59)
+scale = Vector2(0.494148, 0.907373)
+partner = NodePath("../BedroomDoorToStairs")
+
+[node name="BedroomDoorToStairs" parent="Doors" node_paths=PackedStringArray("partner") instance=ExtResource("14_eadeo")]
+position = Vector2(-16, 59)
+scale = Vector2(0.494148, 0.907373)
+partner = NodePath("../DoorToBedroom")
+
+[node name="LibraryDoorToStairs" parent="Doors" node_paths=PackedStringArray("partner") instance=ExtResource("14_eadeo")]
+position = Vector2(29, 59)
+scale = Vector2(0.494148, 0.907373)
+partner = NodePath("../DoorToLibrary")
+
+[node name="ClosetDoor" parent="Doors" node_paths=PackedStringArray("partner") instance=ExtResource("14_eadeo")]
+position = Vector2(-55, 93)
+scale = Vector2(0.44, 1)
+partner = NodePath("../KitchenDoor")
+
+[node name="KitchenToLaundry" parent="Doors" node_paths=PackedStringArray("partner") instance=ExtResource("14_eadeo")]
+position = Vector2(25, 93)
+scale = Vector2(0.44, 1)
+partner = NodePath("../LaundryToKitchen")
+
+[node name="LaundryToKitchen" parent="Doors" node_paths=PackedStringArray("partner") instance=ExtResource("14_eadeo")]
+position = Vector2(29, 93)
+scale = Vector2(0.44, 1)
+partner = NodePath("../KitchenToLaundry")
+
+[node name="LaundryToGarage" parent="Doors" node_paths=PackedStringArray("partner") instance=ExtResource("14_eadeo")]
+position = Vector2(65, 93)
+scale = Vector2(0.44, 1)
+partner = NodePath("../GarageToLaundry")
+
+[node name="GarageToLaundry" parent="Doors" node_paths=PackedStringArray("partner") instance=ExtResource("14_eadeo")]
+position = Vector2(69, 93)
+scale = Vector2(0.44, 1)
+partner = NodePath("../LaundryToGarage")
+
+[node name="BedroomAtticDoor" parent="Doors" node_paths=PackedStringArray("partner") instance=ExtResource("14_eadeo")]
+position = Vector2(-36.4049, 56.9533)
+scale = Vector2(3.25045, 1.09966)
+partner = NodePath("../AtticDoor")
+
+[node name="AtticDoor" parent="Doors" node_paths=PackedStringArray("partner") instance=ExtResource("14_eadeo")]
+position = Vector2(-36, 22)
+scale = Vector2(3.11526, 1.09966)
+partner = NodePath("../BedroomAtticDoor")
+
+[node name="BlockingVolumes" type="Node2D" parent="."]
+
+[node name="BlockingVolume" type="StaticBody2D" parent="BlockingVolumes"]
+position = Vector2(-53, 93)
+
+[node name="BoxCollider" type="CollisionShape2D" parent="BlockingVolumes/BlockingVolume"]
+position = Vector2(0, -6.5)
+shape = SubResource("RectangleShape2D_og8rx")
+
+[node name="BlockingVolume11" type="StaticBody2D" parent="BlockingVolumes"]
+position = Vector2(107, 93)
+
+[node name="BoxCollider" type="CollisionShape2D" parent="BlockingVolumes/BlockingVolume11"]
+position = Vector2(0, -6.5)
+shape = SubResource("RectangleShape2D_og8rx")
+
+[node name="BlockingVolume4" type="StaticBody2D" parent="BlockingVolumes"]
+position = Vector2(27, 93)
+
+[node name="BoxCollider" type="CollisionShape2D" parent="BlockingVolumes/BlockingVolume4"]
+position = Vector2(0, -6.5)
+shape = SubResource("RectangleShape2D_og8rx")
+
+[node name="BlockingVolume5" type="StaticBody2D" parent="BlockingVolumes"]
+position = Vector2(27, 59)
+
+[node name="BoxCollider" type="CollisionShape2D" parent="BlockingVolumes/BlockingVolume5"]
+position = Vector2(0, -6.5)
+shape = SubResource("RectangleShape2D_og8rx")
+
+[node name="BlockingVolume6" type="StaticBody2D" parent="BlockingVolumes"]
+position = Vector2(-14, 59)
+
+[node name="BoxCollider" type="CollisionShape2D" parent="BlockingVolumes/BlockingVolume6"]
+position = Vector2(0, -6.5)
+shape = SubResource("RectangleShape2D_og8rx")
+
+[node name="BlockingVolume7" type="StaticBody2D" parent="BlockingVolumes"]
+position = Vector2(-53, 24)
+
+[node name="BoxCollider" type="CollisionShape2D" parent="BlockingVolumes/BlockingVolume7"]
+position = Vector2(0, -6.5)
+shape = SubResource("RectangleShape2D_og8rx")
+
+[node name="BlockingVolume8" type="StaticBody2D" parent="BlockingVolumes"]
+position = Vector2(27, 24)
+
+[node name="BoxCollider" type="CollisionShape2D" parent="BlockingVolumes/BlockingVolume8"]
+position = Vector2(0, -6.5)
+shape = SubResource("RectangleShape2D_og8rx")
+
+[node name="BlockingVolume9" type="StaticBody2D" parent="BlockingVolumes"]
+position = Vector2(-13.9896, 34.0521)
+
+[node name="BoxCollider" type="CollisionShape2D" parent="BlockingVolumes/BlockingVolume9"]
+rotation = 1.57079
+shape = SubResource("RectangleShape2D_dx581")
+
+[node name="BlockingVolume10" type="StaticBody2D" parent="BlockingVolumes"]
+position = Vector2(-13, 69.0614)
+
+[node name="BoxCollider" type="CollisionShape2D" parent="BlockingVolumes/BlockingVolume10"]
+rotation = 1.57079
+shape = SubResource("RectangleShape2D_dx581")
+
+[node name="BlockingVolume2" type="StaticBody2D" parent="BlockingVolumes"]
+position = Vector2(-93, 93)
+
+[node name="BoxCollider" type="CollisionShape2D" parent="BlockingVolumes/BlockingVolume2"]
+position = Vector2(0, -24.5)
+shape = SubResource("RectangleShape2D_dk3vk")
+
+[node name="BlockingVolume3" type="StaticBody2D" parent="BlockingVolumes"]
+position = Vector2(67, 93)
+
+[node name="BoxCollider" type="CollisionShape2D" parent="BlockingVolumes/BlockingVolume3"]
+position = Vector2(0, -24.5)
+shape = SubResource("RectangleShape2D_dk3vk")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="BlockingVolumes"]
+position = Vector2(-3.1748, 0.0566597)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BlockingVolumes/StaticBody2D"]
+position = Vector2(6, 113)
+shape = SubResource("RectangleShape2D_6uj18")
+
+[node name="ParticleSystems" type="Node2D" parent="."]
+
+[node name="SimpleRain" parent="ParticleSystems" instance=ExtResource("15_sh5ol")]
+position = Vector2(-0.0530939, -62.0542)
+rotation = 3.14159
+scale = Vector2(1.76, -1)
+amount = 45
+scale_amount_min = 0.1
+scale_amount_max = 0.45
+hue_variation_min = -0.02
+hue_variation_max = 0.04
+
+[node name="FallingLeaves" parent="ParticleSystems" instance=ExtResource("16_xk0bw")]
+position = Vector2(-68.8651, -43.1731)
+amount = 15
+emission_rect_extents = Vector2(128, 1)
+
+[node name="FallingLeaves2" parent="ParticleSystems" instance=ExtResource("16_xk0bw")]
+modulate = Color(0.45098, 0.027451, 0.0980392, 1)
+position = Vector2(-61.0067, -32.8434)
+amount = 15
+emission_rect_extents = Vector2(128, 1)
+
+[node name="FallingLeaves3" parent="ParticleSystems" instance=ExtResource("16_xk0bw")]
+modulate = Color(0.321569, 0.235294, 0.117647, 1)
+position = Vector2(12.7876, -52.0906)
+amount = 15
+emission_rect_extents = Vector2(128, 1)

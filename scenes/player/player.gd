@@ -72,6 +72,7 @@ func set_room_target(location: Vector2):
 func change_rooms():
 	TransitionLayer.change_rooms()
 	$DoorTimer.start()
+	$DoorSFXPlayer.play()
 	await $DoorTimer.timeout
 	global_position = target_room_location
 	

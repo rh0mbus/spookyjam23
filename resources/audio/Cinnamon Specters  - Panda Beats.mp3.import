@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://3yo07wpqgegd"
+path="res://.godot/imported/Cinnamon Specters  - Panda Beats.mp3-421b64a05acea6ad1bf0f24cae6b8c51.mp3str"
+
+[deps]
+
+source_file="res://resources/audio/Cinnamon Specters  - Panda Beats.mp3"
+dest_files=["res://.godot/imported/Cinnamon Specters  - Panda Beats.mp3-421b64a05acea6ad1bf0f24cae6b8c51.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
