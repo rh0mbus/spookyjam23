@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://c4hb8f35j1qd1"]
+[gd_scene load_steps=22 format=3 uid="uid://c4hb8f35j1qd1"]
 
 [ext_resource type="Script" path="res://scenes/main_level.gd" id="1_qvpj3"]
 [ext_resource type="PackedScene" uid="uid://7avrct37qter" path="res://scenes/player/player.tscn" id="2_3uhr4"]
@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://bdmywcxoetpe1" path="res://resources/sprites/level/main_clouds.png" id="4_rnrkr"]
 [ext_resource type="AudioStream" uid="uid://cnkdu8u6t1xpm" path="res://resources/audio/Summer Wind Through Leaves Sound Effect  Copyright Free Nature Sounds.mp3" id="5_wpk5u"]
 [ext_resource type="Texture2D" uid="uid://4b4jk2a3v1dp" path="res://resources/sprites/level/main_interior_back_layer.png" id="7_fe2p8"]
+[ext_resource type="PackedScene" uid="uid://h1akmn6usryf" path="res://scenes/items/weapon_safe.tscn" id="7_wpbx2"]
 [ext_resource type="Texture2D" uid="uid://ci2hoqhhkll5s" path="res://resources/sprites/level/main_atmosphere.png" id="8_y1hry"]
 [ext_resource type="Texture2D" uid="uid://brt7fd1anjmn0" path="res://resources/sprites/level/main_interior_front_layer.png" id="9_xs7al"]
 [ext_resource type="Texture2D" uid="uid://blknqr65affyb" path="res://resources/sprites/level/pumpkins_3.png" id="12_yvugb"]
@@ -61,6 +62,9 @@ position = Vector2(-132, 53)
 [node name="Player" parent="." instance=ExtResource("2_3uhr4")]
 position = Vector2(-19.3818, 95)
 scale = Vector2(0.715232, 0.715232)
+
+[node name="weapon_safe" parent="." instance=ExtResource("7_wpbx2")]
+position = Vector2(-86, 60)
 
 [node name="MainInteriorFrontLayer" type="Sprite2D" parent="."]
 texture_filter = 1

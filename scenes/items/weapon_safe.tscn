@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://h1akmn6usryf"]
+
+[ext_resource type="Texture2D" uid="uid://erumccuc2s2q" path="res://resources/sprites/items/weapon_safe.png" id="1_eoole"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_j02b2"]
+size = Vector2(12, 16)
+
+[node name="weapon_safe" type="Area2D"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_j02b2")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+texture = ExtResource("1_eoole")
