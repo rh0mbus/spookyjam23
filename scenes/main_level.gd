@@ -1,6 +1,6 @@
 extends Node2D
 
-@export var sound_clip : AudioStream
+@export var sound_clip : AudioStream 	
 
 var bat: PackedScene = preload("res://scenes/monsters/bat.tscn")
 var ghost: PackedScene = preload("res://scenes/monsters/ghost.tscn")

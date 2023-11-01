@@ -23,6 +23,17 @@ func _ready():
 
 func _process(_delta):
 	
+	var current_rotation = $ReticleSprite.global_rotation_degrees
+	var current_weapon = $ReticleSprite/Pistol
+	
+	print(current_rotation)
+	if current_rotation >= -90 and current_rotation <= 90:
+		$ReticleSprite/Pistol.flip_h = false
+		$ReticleSprite/Pistol.flip_v = false
+	else:
+		$ReticleSprite/Pistol.flip_h = false
+		$ReticleSprite/Pistol.flip_v = true
+	
 	if is_able_to_change_rooms:
 		$UI.show()
 		if Input.is_action_just_pressed("interact"):
@@ -52,6 +63,7 @@ func _physics_process(delta):
 		$ReticleSprite.visible = true
 		if Input.is_action_just_pressed("fire"):
 			var current_rotation = $ReticleSprite.global_rotation_degrees
+			$ReticleSprite/Pistol.fire()
 			if current_rotation >= -90 and current_rotation <= 90:
 				velocity.x += -recoil_amount
 			else:
