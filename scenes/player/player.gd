@@ -9,6 +9,7 @@ const AIM_SPEED: float = 1.0
 var recoil_amount: float = 50
 
 var is_weapon_equipped : bool = false
+var is_pistol_equipped: bool = true
 var is_able_to_change_rooms: bool = false
 var target_room_location: Vector2
 
@@ -48,10 +49,13 @@ func _process(_delta):
 		speed = 20.0
 	
 	if is_player_armed and Input.is_action_just_pressed("select_weapon_1"):
-		print("pressed 1")
-		is_weapon_equipped = !is_weapon_equipped
-		print(is_weapon_equipped)
-
+		is_weapon_equipped = true
+		is_pistol_equipped = true
+	
+	if is_player_armed and Input.is_action_just_pressed("select_weapon_2"):
+		is_weapon_equipped = true
+		is_pistol_equipped = false
+	
 func _physics_process(delta):
 	if not is_on_floor():
 		velocity.y += gravity * delta
