@@ -1,7 +1,9 @@
-[gd_scene load_steps=3 format=3 uid="uid://c6uphvejuexeq"]
+[gd_scene load_steps=5 format=3 uid="uid://c6uphvejuexeq"]
 
 [ext_resource type="Script" path="res://scenes/player/hud.gd" id="1_r5eti"]
 [ext_resource type="FontFile" uid="uid://cv25gg3nbtxl" path="res://resources/fonts/Pixeltype.ttf" id="2_6ydax"]
+[ext_resource type="Texture2D" uid="uid://b36lym7rhi8k2" path="res://resources/sprites/health_icon.png" id="3_i7vhx"]
+[ext_resource type="Texture2D" uid="uid://cswoy1bsn2yq2" path="res://resources/sprites/sprint_icon.png" id="4_57iwa"]
 
 [node name="HUD" type="CanvasLayer"]
 script = ExtResource("1_r5eti")
@@ -17,13 +19,38 @@ offset_right = 204.0
 offset_bottom = -50.0
 grow_vertical = 0
 
-[node name="ProgressBar" type="ProgressBar" parent="PlayerStats"]
-layout_mode = 0
-offset_top = 10.57
-offset_right = 152.0
-offset_bottom = 25.57
+[node name="VBoxContainer2" type="VBoxContainer" parent="PlayerStats"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 7.0
+offset_top = -40.0
+offset_right = 86.72
+offset_bottom = -7.215
+grow_vertical = 0
+
+[node name="ProgressBar" type="ProgressBar" parent="PlayerStats/VBoxContainer2"]
+modulate = Color(1, 0.133333, 0.219608, 1)
+texture_filter = 1
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_6ydax")
 value = 50.0
-show_percentage = false
+
+[node name="Sprite2D" type="Sprite2D" parent="PlayerStats/VBoxContainer2/ProgressBar"]
+position = Vector2(-10, 9)
+texture = ExtResource("3_i7vhx")
+
+[node name="ProgressBar2" type="ProgressBar" parent="PlayerStats/VBoxContainer2"]
+self_modulate = Color(0.329412, 0.682353, 0.443137, 1)
+texture_filter = 1
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_6ydax")
+value = 50.0
+
+[node name="Sprite2D" type="Sprite2D" parent="PlayerStats/VBoxContainer2/ProgressBar2"]
+position = Vector2(-9, 9)
+texture = ExtResource("4_57iwa")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="PlayerStats"]
 layout_mode = 1
