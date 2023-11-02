@@ -6,10 +6,12 @@ const FRICTION: float = 4.0
 const ACCELERATION: float = 2.0
 const JUMP_VELOCITY: float = -80.0
 const AIM_SPEED: float = 1.0
-var recoil_amount: float = 50
 
+var recoil_amount: float = 50
+var reload_time: float = 1
 var is_weapon_equipped : bool = false
 var is_pistol_equipped: bool = true
+var is_able_to_shoot: bool = true
 var is_able_to_change_rooms: bool = false
 var target_room_location: Vector2
 
@@ -27,13 +29,16 @@ func _process(_delta):
 	var current_rotation = $ReticleSprite.global_rotation_degrees
 	var current_weapon = $ReticleSprite/Pistol
 	
-	print(current_rotation)
 	if current_rotation >= -90 and current_rotation <= 90:
 		$ReticleSprite/Pistol.flip_h = false
 		$ReticleSprite/Pistol.flip_v = false
+		$ReticleSprite/Shotgun.flip_h = true
+		$ReticleSprite/Shotgun.flip_v = false
 	else:
 		$ReticleSprite/Pistol.flip_h = false
 		$ReticleSprite/Pistol.flip_v = true
+		$ReticleSprite/Shotgun.flip_h = true
+		$ReticleSprite/Shotgun.flip_v = true
 	
 	if is_able_to_change_rooms:
 		$UI.show()
@@ -51,10 +56,18 @@ func _process(_delta):
 	if is_player_armed and Input.is_action_just_pressed("select_weapon_1"):
 		is_weapon_equipped = true
 		is_pistol_equipped = true
+		recoil_amount = 20
+		reload_time = 0.2
+		$ReticleSprite/Pistol.equip()
+		$ReticleSprite/Shotgun.unequip()
 	
 	if is_player_armed and Input.is_action_just_pressed("select_weapon_2"):
 		is_weapon_equipped = true
+		recoil_amount = 50
 		is_pistol_equipped = false
+		reload_time = 0.55
+		$ReticleSprite/Pistol.unequip()
+		$ReticleSprite/Shotgun.equip()
 	
 func _physics_process(delta):
 	if not is_on_floor():
@@ -65,13 +78,20 @@ func _physics_process(delta):
 		
 	if is_weapon_equipped:
 		$ReticleSprite.visible = true
-		if Input.is_action_just_pressed("fire"):
+		if Input.is_action_just_pressed("fire") and is_able_to_shoot:
+			is_able_to_shoot = false
 			var current_rotation = $ReticleSprite.global_rotation_degrees
-			$ReticleSprite/Pistol.fire()
+			if is_pistol_equipped:
+				$ReticleSprite/Pistol.fire()
+			else:
+				$ReticleSprite/Shotgun.fire()
+
 			if current_rotation >= -90 and current_rotation <= 90:
 				velocity.x += -recoil_amount
 			else:
 				velocity.x += recoil_amount
+			await get_tree().create_timer(reload_time).timeout
+			is_able_to_shoot = true
 	else:
 		$ReticleSprite.visible = false
 

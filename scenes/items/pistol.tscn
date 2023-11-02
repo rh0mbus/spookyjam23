@@ -4,6 +4,33 @@
 [ext_resource type="Script" path="res://Pistol.gd" id="2_f3ltg"]
 [ext_resource type="AudioStream" uid="uid://bcy04k30n7o6r" path="res://resources/audio/freesound__acidsnowflake__small-pistol-gunshot-indoors_pitched.mp3" id="3_bqimq"]
 
+[sub_resource type="Animation" id="Animation_fy6qk"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("EjectShellCPUParticles:emitting")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
 [sub_resource type="Animation" id="Animation_of03i"]
 resource_name = "fire"
 length = 0.2
@@ -20,20 +47,17 @@ tracks/0/keys = {
 "update": 1,
 "values": [0, 1, 2, 3, 0]
 }
-
-[sub_resource type="Animation" id="Animation_fy6qk"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("EjectShellCPUParticles:emitting")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.11),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [0]
+"values": [true]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_ijgbx"]
@@ -56,3 +80,19 @@ volume_db = -15.0
 libraries = {
 "": SubResource("AnimationLibrary_ijgbx")
 }
+
+[node name="EjectShellCPUParticles" type="CPUParticles2D" parent="."]
+modulate = Color(0.698039, 0.556863, 0, 1)
+position = Vector2(2, -3)
+emitting = false
+amount = 1
+lifetime = 0.1
+one_shot = true
+emission_shape = 2
+emission_sphere_radius = 1.0
+initial_velocity_min = 44.94
+initial_velocity_max = 123.6
+angular_velocity_min = 32.36
+angular_velocity_max = 32.36
+scale_amount_min = 0.5
+scale_amount_max = 0.5
