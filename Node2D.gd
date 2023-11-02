@@ -20,6 +20,4 @@ func spawn_bat():
 	$SpawnMarker.add_child(new_bat)
 	new_bat.position = $SpawnMarker.position
 	new_bat.direction = Vector2.RIGHT
-	print(new_bat.position)
-	print(new_bat.visible)
 	is_bat_spawnable = true

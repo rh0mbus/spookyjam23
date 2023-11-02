@@ -78,25 +78,23 @@ func _physics_process(delta):
 	if is_weapon_equipped:
 		$ReticleSprite.visible = true
 		if Input.is_action_just_pressed("fire") and is_able_to_shoot:
-			print("Pistol ammo: %f", pistol_ammo)
-			print("Shotgun ammo: %f", shotgun_ammo)
 			is_able_to_shoot = false
+
 			var current_rotation = $ReticleSprite.global_rotation_degrees
+
 			if is_pistol_equipped and pistol_ammo >= 1:
 				$ReticleSprite/Pistol.fire()
 				pistol_ammo -= 1
 				$HUD.set_pistol_ammo_text(pistol_ammo)
+				do_recoil(current_rotation)
 			elif not is_pistol_equipped and shotgun_ammo >= 1:
 				$ReticleSprite/Shotgun.fire()
 				shotgun_ammo -= 1
 				$HUD.set_shotgun_ammo_text(shotgun_ammo)
+				do_recoil(current_rotation)
 			else:
 				pass
 
-			if current_rotation >= -90 and current_rotation <= 90:
-				velocity.x += -recoil_amount
-			else:
-				velocity.x += recoil_amount
 			await get_tree().create_timer(reload_time).timeout
 			is_able_to_shoot = true
 	else:
@@ -110,6 +108,11 @@ func _physics_process(delta):
 
 	move_and_slide()
 
+func do_recoil(rot: float):
+	if rot >= -90 and rot <= 90:
+		velocity.x += -recoil_amount
+	else:
+		velocity.x += recoil_amount
 
 func set_room_target(location: Vector2):
 	enable_interact_ui()
