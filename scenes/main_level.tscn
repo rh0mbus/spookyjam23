@@ -76,33 +76,29 @@ position = Vector2(-35, 90.3341)
 scale = Vector2(0.640001, 0.68)
 texture = ExtResource("15_ketov")
 
-[node name="AmmoSpawnMarker" type="Marker2D" parent="." groups=["AmmoSpawn"]]
+[node name="AmmoSpawners" type="Node2D" parent="."]
 position = Vector2(101, 94)
 scale = Vector2(0.715232, 0.715232)
 
-[node name="AmmoSpawnMarker2" type="Marker2D" parent="." groups=["AmmoSpawn"]]
-position = Vector2(59, 63)
-scale = Vector2(0.715232, 0.715232)
+[node name="AmmoSpawnMarker" type="Marker2D" parent="AmmoSpawners" groups=["AmmoSpawn"]]
 
-[node name="AmmoSpawnMarker3" type="Marker2D" parent="." groups=["AmmoSpawn"]]
-position = Vector2(-11, 27)
-scale = Vector2(0.715232, 0.715232)
+[node name="AmmoSpawnMarker2" type="Marker2D" parent="AmmoSpawners" groups=["AmmoSpawn"]]
+position = Vector2(-58.7222, -43.3426)
 
-[node name="AmmoSpawnMarker4" type="Marker2D" parent="." groups=["AmmoSpawn"]]
-position = Vector2(-86, 98)
-scale = Vector2(0.715232, 0.715232)
+[node name="AmmoSpawnMarker3" type="Marker2D" parent="AmmoSpawners" groups=["AmmoSpawn"]]
+position = Vector2(-156.593, -93.6759)
 
-[node name="AmmoSpawnMarker5" type="Marker2D" parent="." groups=["AmmoSpawn"]]
-position = Vector2(-56, 63)
-scale = Vector2(0.715232, 0.715232)
+[node name="AmmoSpawnMarker4" type="Marker2D" parent="AmmoSpawners" groups=["AmmoSpawn"]]
+position = Vector2(-261.454, 5.59259)
 
-[node name="AmmoSpawnMarker6" type="Marker2D" parent="." groups=["AmmoSpawn"]]
-position = Vector2(-35, 99)
-scale = Vector2(0.715232, 0.715232)
+[node name="AmmoSpawnMarker5" type="Marker2D" parent="AmmoSpawners" groups=["AmmoSpawn"]]
+position = Vector2(-219.509, -43.3426)
 
-[node name="AmmoSpawnMarker7" type="Marker2D" parent="." groups=["AmmoSpawn"]]
-position = Vector2(52, 99)
-scale = Vector2(0.715232, 0.715232)
+[node name="AmmoSpawnMarker6" type="Marker2D" parent="AmmoSpawners" groups=["AmmoSpawn"]]
+position = Vector2(-190.148, 6.99074)
+
+[node name="AmmoSpawnMarker7" type="Marker2D" parent="AmmoSpawners" groups=["AmmoSpawn"]]
+position = Vector2(-68.5092, 6.99074)
 
 [node name="MainAtmosphere" type="Sprite2D" parent="."]
 texture_filter = 1

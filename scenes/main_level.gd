@@ -36,7 +36,8 @@ func _ready():
 	init_song_list()
 	$Audio/BGM_Music.stream = song_array.pick_random()
 	$Audio/BGM_Music.play()
-	
+	$Player.change_song_on_hud($Audio/BGM_Music.stream.resource_name)
+
 	for door in get_tree().get_nodes_in_group("door_entry"):
 		door.connect('player_entered_door_area', _player_entered_openable_area)
 		door.connect('player_left_door_area', _player_left_area)
@@ -49,9 +50,7 @@ func _ready():
 func _process(_delta):
 	if Input.is_action_just_pressed("quit"):
 		get_tree().quit()
-	
-	print(is_ammo_spawnable)
-	print(ammo_box_count)
+
 	if ammo_box_count >= 2:
 		is_ammo_spawnable = false
 	else:
@@ -71,13 +70,12 @@ func _process(_delta):
 		
 	if is_ammo_spawnable:
 		ammo_box_count += 1
-		print("should spawn ammo")
 		spawn_ammo()
 
 	if Input.is_action_just_pressed("change_song"):
 		$Audio/BGM_Music.stop()
 		$Audio/BGM_Music.stream = song_array.pick_random()
-		print($Audio/BGM_Music.stream.resource_name) # TODO Update UI
+		$Player.change_song_on_hud($Audio/BGM_Music.stream.resource_name)
 		$Audio/BGM_Music.play()
 
 func _player_entered_openable_area(target_pos):
@@ -156,7 +154,7 @@ func spawn_ammo():
 func _on_bgm_music_finished():
 	$Audio/BGM_Music.stop()
 	$Audio/BGM_Music.stream = song_array.pick_random()
-	print($Audio/BGM_Music.stream.resource_name) # TODO Update UI
+	$Player.change_song_on_hud($Audio/BGM_Music.stream.resource_name)
 	$Audio/BGM_Music.play()
 
 func _on_player_picked_up_ammo(amount: int):

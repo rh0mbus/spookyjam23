@@ -21,6 +21,8 @@ var is_player_armed: bool = false
 var pistol_ammo: int = 18
 var shotgun_ammo: int = 6
 
+var player_score: int = 0 # TODO Add scoring system
+
 func _ready():
 	$ReticleSprite.visible = false
 
@@ -141,9 +143,13 @@ func _on_door_timer_timeout():
 	pass # Replace with function body.
 
 func add_ammo(amount: int):
+	$ReloadStreamPlayer.play()
 	if amount == 15:
 		pistol_ammo += amount
 		$HUD.set_pistol_ammo_text(pistol_ammo)
 	else:
 		shotgun_ammo += amount
 		$HUD.set_shotgun_ammo_text(shotgun_ammo)
+
+func change_song_on_hud(text: String):
+	$HUD.set_song_text(text)

@@ -1,9 +1,47 @@
-[gd_scene load_steps=5 format=3 uid="uid://c6uphvejuexeq"]
+[gd_scene load_steps=8 format=3 uid="uid://c6uphvejuexeq"]
 
 [ext_resource type="Script" path="res://scenes/player/hud.gd" id="1_r5eti"]
 [ext_resource type="FontFile" uid="uid://cv25gg3nbtxl" path="res://resources/fonts/Pixeltype.ttf" id="2_6ydax"]
 [ext_resource type="Texture2D" uid="uid://b36lym7rhi8k2" path="res://resources/sprites/health_icon.png" id="3_i7vhx"]
 [ext_resource type="Texture2D" uid="uid://cswoy1bsn2yq2" path="res://resources/sprites/sprint_icon.png" id="4_57iwa"]
+
+[sub_resource type="Animation" id="Animation_5vv2l"]
+resource_name = "now_playing_fade"
+length = 5.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("HBoxContainer:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.5, 3.5, 5),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_gv0nx"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("HBoxContainer:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_soky6"]
+_data = {
+"RESET": SubResource("Animation_gv0nx"),
+"now_playing_fade": SubResource("Animation_5vv2l")
+}
 
 [node name="HUD" type="CanvasLayer"]
 script = ExtResource("1_r5eti")
@@ -95,3 +133,34 @@ layout_mode = 2
 theme_override_fonts/font = ExtResource("2_6ydax")
 text = "6
 "
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+modulate = Color(1, 1, 1, 0)
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -241.0
+offset_top = 25.0
+offset_right = 241.0
+offset_bottom = 65.0
+grow_horizontal = 2
+
+[node name="NowPlayingLabel" type="Label" parent="HBoxContainer"]
+texture_filter = 1
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_6ydax")
+theme_override_font_sizes/font_size = 32
+text = "Now playing: "
+
+[node name="SongTextLabel" type="Label" parent="HBoxContainer"]
+texture_filter = 1
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_6ydax")
+theme_override_font_sizes/font_size = 32
+text = " Some lofi some by some various artist"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "now_playing_fade"
+libraries = {
+"": SubResource("AnimationLibrary_soky6")
+}
