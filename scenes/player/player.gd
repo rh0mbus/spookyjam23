@@ -27,7 +27,6 @@ func _ready():
 func _process(_delta):
 	
 	var current_rotation = $ReticleSprite.global_rotation_degrees
-	var current_weapon = $ReticleSprite/Pistol
 	
 	if current_rotation >= -90 and current_rotation <= 90:
 		$ReticleSprite/Pistol.flip_h = false
@@ -79,12 +78,20 @@ func _physics_process(delta):
 	if is_weapon_equipped:
 		$ReticleSprite.visible = true
 		if Input.is_action_just_pressed("fire") and is_able_to_shoot:
+			print("Pistol ammo: %f", pistol_ammo)
+			print("Shotgun ammo: %f", shotgun_ammo)
 			is_able_to_shoot = false
 			var current_rotation = $ReticleSprite.global_rotation_degrees
-			if is_pistol_equipped:
+			if is_pistol_equipped and pistol_ammo >= 1:
 				$ReticleSprite/Pistol.fire()
-			else:
+				pistol_ammo -= 1
+				$HUD.set_pistol_ammo_text(pistol_ammo)
+			elif not is_pistol_equipped and shotgun_ammo >= 1:
 				$ReticleSprite/Shotgun.fire()
+				shotgun_ammo -= 1
+				$HUD.set_shotgun_ammo_text(shotgun_ammo)
+			else:
+				pass
 
 			if current_rotation >= -90 and current_rotation <= 90:
 				velocity.x += -recoil_amount
@@ -125,6 +132,7 @@ func disable_interact_ui():
 
 func give_weapons():
 	is_player_armed = true
+	$HUD.visible = true
 
 func _on_door_timer_timeout():
 	pass # Replace with function body.
