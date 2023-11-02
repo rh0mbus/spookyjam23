@@ -5,10 +5,14 @@ extends Node2D
 var bat: PackedScene = preload("res://scenes/monsters/bat.tscn")
 var ghost: PackedScene = preload("res://scenes/monsters/ghost.tscn")
 var ghoul: PackedScene = preload("res://scenes/monsters/ghoul.tscn")
+var ammo_box: PackedScene = preload("res://scenes/items/ammo_pickup.tscn")
 
 var is_bat_spawnable: bool = true
 var is_ghost_spawnable: bool = true
 var is_ghoul_spawnable: bool = true
+
+var is_ammo_spawnable: bool = true
+var ammo_box_count: int = 0
 
 @onready var song_0: AudioStreamMP3 = load("res://resources/audio/Black Cat  Halloween Autumn Lofi.mp3")
 @onready var song_1: AudioStreamMP3 = load("res://resources/audio/Cinnamon Specters  - Panda Beats.mp3") 
@@ -23,6 +27,7 @@ var is_ghoul_spawnable: bool = true
 @onready var song_10: AudioStreamMP3 = load("res://resources/audio/Lofi Astronaut - Paranormal.mp3") 
 @onready var song_11: AudioStreamMP3 = load("res://resources/audio/Lofi Astronaut - Shadows.mp3") 
  
+
 var song_array = []
 
 # Called when the node enters the scene tree for the first time.
@@ -44,6 +49,13 @@ func _ready():
 func _process(_delta):
 	if Input.is_action_just_pressed("quit"):
 		get_tree().quit()
+	
+	print(is_ammo_spawnable)
+	print(ammo_box_count)
+	if ammo_box_count >= 2:
+		is_ammo_spawnable = false
+	else:
+		is_ammo_spawnable = true
 
 	if is_bat_spawnable:
 		spawn_bat()
@@ -56,6 +68,11 @@ func _process(_delta):
 	if is_ghoul_spawnable:
 		spawn_ghoul()
 		is_ghoul_spawnable = false
+		
+	if is_ammo_spawnable:
+		ammo_box_count += 1
+		print("should spawn ammo")
+		spawn_ammo()
 
 	if Input.is_action_just_pressed("change_song"):
 		$Audio/BGM_Music.stop()
@@ -124,12 +141,27 @@ func spawn_ghoul():
 	new_ghoul.global_position = $GhoulSpawnMarker.global_position
 	is_ghoul_spawnable = true
 
+func spawn_ammo():
+	var time = randi_range(30, 60)
+	await get_tree().create_timer(time).timeout
+	
+	var new_box = ammo_box.instantiate() as Area2D
+	var new_parent = get_tree().get_nodes_in_group("AmmoSpawn").pick_random()
+	new_parent.add_child(new_box)
+	new_box.global_position = new_parent.global_position
+	var random_offset = randi_range(-10, 10)
+	new_box.global_position.x += random_offset
+	new_box.connect('ammo_picked_up', _on_player_picked_up_ammo)
+	
 func _on_bgm_music_finished():
 	$Audio/BGM_Music.stop()
 	$Audio/BGM_Music.stream = song_array.pick_random()
 	print($Audio/BGM_Music.stream.resource_name) # TODO Update UI
 	$Audio/BGM_Music.play()
 
+func _on_player_picked_up_ammo(amount: int):
+	ammo_box_count -= 1
+	$Player.add_ammo(amount)
 
 func _on_weapon_safe_player_opened_safe():
 	$Player.give_weapons()

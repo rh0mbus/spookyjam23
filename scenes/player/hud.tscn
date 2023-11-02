@@ -59,7 +59,7 @@ layout_mode = 2
 texture_filter = 1
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_6ydax")
-text = "Pistol Ammo: "
+text = "Shotgun Ammo: "
 
 [node name="Shotgun Ammo Amount Text" type="Label" parent="PlayerStats/VBoxContainer/HBoxContainer2"]
 unique_name_in_owner = true

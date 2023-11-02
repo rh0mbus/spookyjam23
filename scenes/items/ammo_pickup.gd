@@ -1,11 +1,22 @@
 extends Area2D
 
+signal ammo_picked_up(amount: int)
 
-# Called when the node enters the scene tree for the first time.
+var pistol_ammount = 15
+var shotgun_amount = 5
+var type_chance: int
+
 func _ready():
-	pass # Replace with function body.
+	type_chance = randi_range(1, 10)
+	if type_chance >= 3:
+		$Sprite2D.frame = 0
+	else:
+		$Sprite2D.frame = 1
 
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
+func _on_body_entered(body):
+	if "change_rooms" in body:
+		if type_chance >= 3:
+			ammo_picked_up.emit(pistol_ammount)
+		else:
+			ammo_picked_up.emit(shotgun_amount)
+		queue_free()

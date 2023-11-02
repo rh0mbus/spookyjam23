@@ -139,3 +139,11 @@ func give_weapons():
 
 func _on_door_timer_timeout():
 	pass # Replace with function body.
+
+func add_ammo(amount: int):
+	if amount == 15:
+		pistol_ammo += amount
+		$HUD.set_pistol_ammo_text(pistol_ammo)
+	else:
+		shotgun_ammo += amount
+		$HUD.set_shotgun_ammo_text(shotgun_ammo)

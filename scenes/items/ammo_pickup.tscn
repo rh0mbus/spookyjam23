@@ -14,6 +14,9 @@ position = Vector2(0, 1.5)
 shape = SubResource("RectangleShape2D_cwr8d")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+z_index = 99
 texture_filter = 1
 texture = ExtResource("1_o4kpf")
 hframes = 2
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
