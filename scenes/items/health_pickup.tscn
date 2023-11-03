@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://v0ma22drsmg6"]
+
+[ext_resource type="Script" path="res://scenes/items/health_pickup.gd" id="1_uch0s"]
+[ext_resource type="Texture2D" uid="uid://dfh6gqh3fqbdh" path="res://resources/sprites/items/medkit.png" id="1_ypjww"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_umha8"]
+size = Vector2(11.0044, 7.02687)
+
+[node name="HealthPickup" type="Area2D"]
+script = ExtResource("1_uch0s")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0.0206757, 0.01069)
+shape = SubResource("RectangleShape2D_umha8")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+texture = ExtResource("1_ypjww")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

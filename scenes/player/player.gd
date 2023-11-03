@@ -21,15 +21,16 @@ var is_player_armed: bool = false
 var pistol_ammo: int = 18
 var shotgun_ammo: int = 6
 
+var health: int = 100
 var player_score: int = 0 # TODO Add scoring system
 
 func _ready():
 	$ReticleSprite.visible = false
 
 func _process(_delta):
-	
+
 	var current_rotation = $ReticleSprite.global_rotation_degrees
-	
+
 	if current_rotation >= -90 and current_rotation <= 90:
 		$ReticleSprite/Pistol.flip_h = false
 		$ReticleSprite/Pistol.flip_v = false
@@ -109,6 +110,15 @@ func _physics_process(delta):
 		velocity.x = move_toward(velocity.x, 0, FRICTION)
 
 	move_and_slide()
+
+func mutate_health(value: int):
+	if value < 0:
+		$PlayerDamagedStreamPlayer.play()
+	else:
+		$PlayerHealStreamPlayer.play()
+	health += value
+	health = clamp(health, 0 ,100)
+	$HUD.update_health_value(health)
 
 func do_recoil(rot: float):
 	if rot >= -90 and rot <= 90:

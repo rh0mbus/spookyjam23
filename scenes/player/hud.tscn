@@ -5,6 +5,21 @@
 [ext_resource type="Texture2D" uid="uid://b36lym7rhi8k2" path="res://resources/sprites/health_icon.png" id="3_i7vhx"]
 [ext_resource type="Texture2D" uid="uid://cswoy1bsn2yq2" path="res://resources/sprites/sprint_icon.png" id="4_57iwa"]
 
+[sub_resource type="Animation" id="Animation_gv0nx"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("HBoxContainer:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+
 [sub_resource type="Animation" id="Animation_5vv2l"]
 resource_name = "now_playing_fade"
 length = 5.0
@@ -20,21 +35,6 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
 "values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
-}
-
-[sub_resource type="Animation" id="Animation_gv0nx"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("HBoxContainer:modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(1, 1, 1, 0)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_soky6"]
@@ -73,7 +73,7 @@ modulate = Color(1, 0.133333, 0.219608, 1)
 texture_filter = 1
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_6ydax")
-value = 50.0
+value = 100.0
 
 [node name="Sprite2D" type="Sprite2D" parent="PlayerStats/VBoxContainer2/ProgressBar"]
 position = Vector2(-10, 9)

@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://7avrct37qter"]
+[gd_scene load_steps=21 format=3 uid="uid://7avrct37qter"]
 
 [ext_resource type="Script" path="res://scenes/player/player.gd" id="1_r4qlo"]
 [ext_resource type="Texture2D" uid="uid://ckta4qse4styd" path="res://resources/sprites/player_sheet.png" id="2_p43pb"]
@@ -10,6 +10,8 @@
 [ext_resource type="AudioStream" uid="uid://b0m6hr0ue83sj" path="res://resources/audio/Free Door open sound effect.mp3" id="6_lg7y5"]
 [ext_resource type="PackedScene" uid="uid://c6uphvejuexeq" path="res://scenes/player/hud.tscn" id="9_rc2x3"]
 [ext_resource type="AudioStream" uid="uid://craajp78vcp7q" path="res://resources/audio/freesound_396331__nioczkus__1911-reload.mp3" id="10_tjssg"]
+[ext_resource type="AudioStream" uid="uid://bytqadmood1bv" path="res://resources/audio/freesound__inspectorj__chewing-breadstick-single_goreMix-b.mp3" id="11_4xutx"]
+[ext_resource type="AudioStream" uid="uid://diyaeeq5binqh" path="res://resources/audio/freesound_edited__banage.mp3" id="12_o7oiu"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_vwi45"]
 radius = 4.0
@@ -187,5 +189,11 @@ visible = false
 
 [node name="ReloadStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("10_tjssg")
+
+[node name="PlayerDamagedStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("11_4xutx")
+
+[node name="PlayerHealStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("12_o7oiu")
 
 [connection signal="timeout" from="DoorTimer" to="." method="_on_door_timer_timeout"]
