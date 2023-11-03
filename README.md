@@ -1,7 +1,7 @@
 
 # The After Party
 
-This was an entry for the 2023 Scream Jam. The intention for this projecte was to get a feel for the Godot game engine after all of the Unity nonsense. 
+This started as an entry for the 2023 Scream Jam in Unreal but became a way to check out the Godot game engine instead. The intention for this projecte was to get a feel for the Godot game engine after all of the Unity runtime fee nonsense and realizing this could potentially happen in Unreal also. However unlikely... 
 
 
 
