@@ -51,8 +51,7 @@ func _process(delta):
 			change_rooms()
 	else:
 		$UI.hide()
-		
-		
+
 	if stamina == 0:
 		is_able_to_sprint = false
 	elif stamina >= 25:
@@ -179,3 +178,11 @@ func add_ammo(amount: int):
 
 func change_song_on_hud(text: String):
 	$HUD.set_song_text(text)
+
+func update_score(points: int):
+	player_score += points
+	$HUD.update_score(player_score)
+
+
+func _on_test_score_timer_timeout():
+	update_score(50)

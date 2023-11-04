@@ -192,7 +192,6 @@ func _on_weapon_safe_player_opened_safe():
 func _on_damage_area_damage(damage):
 	$Player.mutate_health(damage)
 
-
 func _on_health_pickup_health_picked_up(amount):
 	medkit_count -= 1
 	$Player.mutate_health(amount)

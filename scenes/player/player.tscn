@@ -172,6 +172,8 @@ scale = Vector2(-1, 1)
 wait_time = 0.2
 one_shot = true
 
+[node name="HUD" parent="." instance=ExtResource("9_rc2x3")]
+
 [node name="UI" parent="." instance=ExtResource("5_dykbu")]
 
 [node name="DoorSFXPlayer" type="AudioStreamPlayer" parent="."]
@@ -184,8 +186,6 @@ libraries = {
 "": SubResource("AnimationLibrary_lq0yd")
 }
 
-[node name="HUD" parent="." instance=ExtResource("9_rc2x3")]
-
 [node name="ReloadStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("10_tjssg")
 
@@ -195,4 +195,8 @@ stream = ExtResource("11_4xutx")
 [node name="PlayerHealStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("12_o7oiu")
 
+[node name="TestScoreTimer" type="Timer" parent="."]
+autostart = true
+
 [connection signal="timeout" from="DoorTimer" to="." method="_on_door_timer_timeout"]
+[connection signal="timeout" from="TestScoreTimer" to="." method="_on_test_score_timer_timeout"]

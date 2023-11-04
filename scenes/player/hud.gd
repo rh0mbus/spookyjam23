@@ -13,7 +13,7 @@ func set_shotgun_ammo_text(amount: int):
 	%"Shotgun Ammo Amount Text".text = str(amount)
 
 func set_song_text(text: String):
-	$HBoxContainer/SongTextLabel.text = text
+	$VBoxContainer/HBoxContainer/SongTextLabel.text = text
 
 func update_health_value(new_value: int):
 	$PlayerStats/VBoxContainer2/HealthBar.value = new_value
@@ -23,3 +23,7 @@ func update_stamina_value(new_value: float):
 
 func show_weapon_stats():
 	$PlayerStats/VBoxContainer.visible = true
+
+func update_score(points: int):
+	$VBoxContainer/HBoxContainer2/NumericalScoreTextLabel.text = str(points)
+	
