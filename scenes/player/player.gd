@@ -12,6 +12,7 @@ var reload_time: float = 1
 var is_weapon_equipped : bool = false
 var is_pistol_equipped: bool = true
 var is_able_to_shoot: bool = true
+var is_able_to_sprint: bool = true
 var is_able_to_change_rooms: bool = false
 var target_room_location: Vector2
 
@@ -22,13 +23,16 @@ var pistol_ammo: int = 18
 var shotgun_ammo: int = 6
 
 var health: int = 100
+var stamina: float = 100.0
 var player_score: int = 0 # TODO Add scoring system
+var stamina_charge_rate: float = 10.0
+var stamina_drain_rate: float = 100.0
 
 func _ready():
 	$ReticleSprite.visible = false
 
-func _process(_delta):
-
+func _process(delta):
+	print(is_able_to_sprint)
 	var current_rotation = $ReticleSprite.global_rotation_degrees
 
 	if current_rotation >= -90 and current_rotation <= 90:
@@ -48,13 +52,26 @@ func _process(_delta):
 			change_rooms()
 	else:
 		$UI.hide()
-	
-	if Input.is_action_pressed("sprint"):
-		speed = 35.0
 		
-	if Input.is_action_just_released("sprint"):
-		speed = 20.0
+		
+	if stamina == 0:
+		is_able_to_sprint = false
+	elif stamina >= 25:
+		is_able_to_sprint = true
 	
+	if Input.is_action_pressed("sprint") and is_able_to_sprint:
+		speed = 35.0
+		stamina -= delta * stamina_drain_rate
+		stamina = clamp(stamina, 0.0, 100.0)
+		$HUD.update_stamina_value(stamina)
+	else:
+		stamina += delta * stamina_charge_rate
+		stamina = clamp(stamina, 0.0, 100.0)
+		$HUD.update_stamina_value(stamina)
+
+	if Input.is_action_just_released("sprint") or not is_able_to_sprint:
+		speed = 20.0
+
 	if is_player_armed and Input.is_action_just_pressed("select_weapon_1"):
 		is_weapon_equipped = true
 		is_pistol_equipped = true

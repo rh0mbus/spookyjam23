@@ -68,25 +68,24 @@ offset_right = 86.72
 offset_bottom = -7.215
 grow_vertical = 0
 
-[node name="ProgressBar" type="ProgressBar" parent="PlayerStats/VBoxContainer2"]
+[node name="HealthBar" type="ProgressBar" parent="PlayerStats/VBoxContainer2"]
 modulate = Color(1, 0.133333, 0.219608, 1)
 texture_filter = 1
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_6ydax")
 value = 100.0
 
-[node name="Sprite2D" type="Sprite2D" parent="PlayerStats/VBoxContainer2/ProgressBar"]
+[node name="Sprite2D" type="Sprite2D" parent="PlayerStats/VBoxContainer2/HealthBar"]
 position = Vector2(-10, 9)
 texture = ExtResource("3_i7vhx")
 
-[node name="ProgressBar2" type="ProgressBar" parent="PlayerStats/VBoxContainer2"]
-self_modulate = Color(0.329412, 0.682353, 0.443137, 1)
+[node name="StaminaBar" type="ProgressBar" parent="PlayerStats/VBoxContainer2"]
 texture_filter = 1
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_6ydax")
 value = 50.0
 
-[node name="Sprite2D" type="Sprite2D" parent="PlayerStats/VBoxContainer2/ProgressBar2"]
+[node name="Sprite2D" type="Sprite2D" parent="PlayerStats/VBoxContainer2/StaminaBar"]
 position = Vector2(-9, 9)
 texture = ExtResource("4_57iwa")
 
