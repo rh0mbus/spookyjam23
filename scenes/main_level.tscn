@@ -96,6 +96,9 @@ position = Vector2(-12.5833, 6.99074)
 [node name="MedkitSpawnMarker5" type="Marker2D" parent="MedkitSpawners" groups=["MedSpawn"]]
 position = Vector2(-83.8889, -44.7407)
 
+[node name="MedkitSpawnMarker6" type="Marker2D" parent="MedkitSpawners" groups=["MedSpawn"]]
+position = Vector2(-134.222, -43.3426)
+
 [node name="AmmoSpawners" type="Node2D" parent="."]
 position = Vector2(101, 94)
 scale = Vector2(0.715232, 0.715232)
