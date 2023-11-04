@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://c4hb8f35j1qd1"]
+[gd_scene load_steps=25 format=3 uid="uid://c4hb8f35j1qd1"]
 
 [ext_resource type="Script" path="res://scenes/main_level.gd" id="1_qvpj3"]
 [ext_resource type="PackedScene" uid="uid://7avrct37qter" path="res://scenes/player/player.tscn" id="2_3uhr4"]
@@ -18,6 +18,7 @@
 [ext_resource type="PackedScene" uid="uid://b5yjygm4kj10f" path="res://scenes/simple_rain.tscn" id="15_sh5ol"]
 [ext_resource type="PackedScene" uid="uid://cn2s4k06jc5o2" path="res://scenes/falling_leaves.tscn" id="16_xk0bw"]
 [ext_resource type="PackedScene" uid="uid://dfdxdm8djbvhw" path="res://scenes/damage_area.tscn" id="18_bbgs1"]
+[ext_resource type="PackedScene" uid="uid://bm4dkqv7ychoi" path="res://scenes/monsters/zombie.tscn" id="19_dhpsj"]
 [ext_resource type="PackedScene" uid="uid://v0ma22drsmg6" path="res://scenes/items/health_pickup.tscn" id="19_jym4m"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_og8rx"]
@@ -322,6 +323,10 @@ position = Vector2(14, 21)
 [node name="HealthPickup" parent="." instance=ExtResource("19_jym4m")]
 position = Vector2(49, 66)
 scale = Vector2(0.75, 0.75)
+
+[node name="Zombie" parent="." instance=ExtResource("19_dhpsj")]
+position = Vector2(-35, 95)
+scale = Vector2(0.715, 0.715)
 
 [connection signal="player_opened_safe" from="weapon_safe" to="." method="_on_weapon_safe_player_opened_safe"]
 [connection signal="finished" from="Audio/BGM_Music" to="." method="_on_bgm_music_finished"]

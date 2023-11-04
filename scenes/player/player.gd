@@ -32,7 +32,6 @@ func _ready():
 	$ReticleSprite.visible = false
 
 func _process(delta):
-	print(is_able_to_sprint)
 	var current_rotation = $ReticleSprite.global_rotation_degrees
 
 	if current_rotation >= -90 and current_rotation <= 90:
