@@ -2,15 +2,21 @@ extends Node2D
 
 @export var sound_clip : AudioStream 	
 
+const MAX_AMMO_COUNT: int = 2
+const MAX_ZOMBIE_COUNT: int = 5
+
 var bat: PackedScene = preload("res://scenes/monsters/bat.tscn")
 var ghost: PackedScene = preload("res://scenes/monsters/ghost.tscn")
 var ghoul: PackedScene = preload("res://scenes/monsters/ghoul.tscn")
 var ammo_box: PackedScene = preload("res://scenes/items/ammo_pickup.tscn")
 var medkit: PackedScene = preload("res://scenes/items/health_pickup.tscn")
+var zombie: PackedScene = preload("res://scenes/monsters/zombie.tscn")
 
 var is_bat_spawnable: bool = true
 var is_ghost_spawnable: bool = true
 var is_ghoul_spawnable: bool = true
+var is_zombie_spawnable: bool = true
+var zombie_count: int = 0
 
 var is_medkit_spawnable: bool = true
 var is_ammo_spawnable: bool = true
@@ -30,7 +36,6 @@ var ammo_box_count: int = 0
 @onready var song_10: AudioStreamMP3 = load("res://resources/audio/Lofi Astronaut - Paranormal.mp3") 
 @onready var song_11: AudioStreamMP3 = load("res://resources/audio/Lofi Astronaut - Shadows.mp3") 
  
-
 var song_array = []
 
 # Called when the node enters the scene tree for the first time.
@@ -54,7 +59,7 @@ func _process(_delta):
 	if Input.is_action_just_pressed("quit"):
 		get_tree().quit()
 
-	if ammo_box_count >= 2:
+	if ammo_box_count >= MAX_AMMO_COUNT:
 		is_ammo_spawnable = false
 	else:
 		is_ammo_spawnable = true
@@ -63,6 +68,11 @@ func _process(_delta):
 		is_medkit_spawnable = false
 	else:
 		is_medkit_spawnable = true
+		
+	if zombie_count >= MAX_ZOMBIE_COUNT: 
+		is_zombie_spawnable = false
+	else:
+		is_zombie_spawnable = true
 
 	if is_bat_spawnable:
 		spawn_bat()
@@ -75,6 +85,11 @@ func _process(_delta):
 	if is_ghoul_spawnable:
 		spawn_ghoul()
 		is_ghoul_spawnable = false
+	
+	if is_zombie_spawnable:
+		spawn_zombie()
+		is_zombie_spawnable = false
+		zombie_count += 1
 		
 	if is_ammo_spawnable:
 		ammo_box_count += 1
@@ -151,6 +166,16 @@ func spawn_ghoul():
 	new_ghoul.global_position = $GhoulSpawnMarker.global_position
 	is_ghoul_spawnable = true
 
+func spawn_zombie():
+	var time = randi_range(15, 60)
+	await get_tree().create_timer(time).timeout
+	
+	var new_zombie = zombie.instantiate() as CharacterBody2D
+	var new_parent = get_tree().get_nodes_in_group("ZombieSpawn").pick_random()
+	new_parent.add_child(new_zombie)
+	new_zombie.global_position = new_parent.global_position
+	new_zombie.scale = Vector2(0.72, 0.72)
+
 func spawn_ammo():
 	var time = randi_range(30, 60)
 	await get_tree().create_timer(time).timeout
@@ -187,7 +212,6 @@ func _on_player_picked_up_ammo(amount: int):
 
 func _on_weapon_safe_player_opened_safe():
 	$Player.give_weapons()
-
 
 func _on_damage_area_damage(damage):
 	$Player.mutate_health(damage)

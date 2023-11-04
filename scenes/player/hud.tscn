@@ -176,6 +176,7 @@ position = Vector2(-9, 9)
 texture = ExtResource("4_57iwa")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="PlayerStats"]
+visible = false
 layout_mode = 1
 anchors_preset = 2
 anchor_top = 1.0

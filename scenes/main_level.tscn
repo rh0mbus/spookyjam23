@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://c4hb8f35j1qd1"]
+[gd_scene load_steps=23 format=3 uid="uid://c4hb8f35j1qd1"]
 
 [ext_resource type="Script" path="res://scenes/main_level.gd" id="1_qvpj3"]
 [ext_resource type="PackedScene" uid="uid://7avrct37qter" path="res://scenes/player/player.tscn" id="2_3uhr4"]
@@ -18,7 +18,6 @@
 [ext_resource type="PackedScene" uid="uid://b5yjygm4kj10f" path="res://scenes/simple_rain.tscn" id="15_sh5ol"]
 [ext_resource type="PackedScene" uid="uid://cn2s4k06jc5o2" path="res://scenes/falling_leaves.tscn" id="16_xk0bw"]
 [ext_resource type="PackedScene" uid="uid://dfdxdm8djbvhw" path="res://scenes/damage_area.tscn" id="18_bbgs1"]
-[ext_resource type="PackedScene" uid="uid://bm4dkqv7ychoi" path="res://scenes/monsters/zombie.tscn" id="19_dhpsj"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_og8rx"]
 size = Vector2(2, 33)
@@ -335,12 +334,31 @@ position = Vector2(12.7876, -52.0906)
 amount = 15
 emission_rect_extents = Vector2(128, 1)
 
-[node name="Zombie" parent="." instance=ExtResource("19_dhpsj")]
-position = Vector2(-35, 95)
-scale = Vector2(0.715, 0.715)
-
 [node name="DamageArea" parent="." instance=ExtResource("18_bbgs1")]
 position = Vector2(21, 22)
+
+[node name="ZombieSpawners" type="Node2D" parent="."]
+
+[node name="ZombieSpawnMarker" type="Marker2D" parent="ZombieSpawners" groups=["ZombieSpawn"]]
+position = Vector2(9, 90)
+
+[node name="ZombieSpawnMarker2" type="Marker2D" parent="ZombieSpawners" groups=["ZombieSpawn"]]
+position = Vector2(-73, 87)
+
+[node name="ZombieSpawnMarker3" type="Marker2D" parent="ZombieSpawners" groups=["ZombieSpawn"]]
+position = Vector2(-57, 53)
+
+[node name="ZombieSpawnMarker4" type="Marker2D" parent="ZombieSpawners" groups=["ZombieSpawn"]]
+position = Vector2(-13, 19)
+
+[node name="ZombieSpawnMarker5" type="Marker2D" parent="ZombieSpawners" groups=["ZombieSpawn"]]
+position = Vector2(46, 56)
+
+[node name="ZombieSpawnMarker6" type="Marker2D" parent="ZombieSpawners" groups=["ZombieSpawn"]]
+position = Vector2(47, 87)
+
+[node name="ZombieSpawnMarker7" type="Marker2D" parent="ZombieSpawners" groups=["ZombieSpawn"]]
+position = Vector2(88, 86)
 
 [connection signal="player_opened_safe" from="weapon_safe" to="." method="_on_weapon_safe_player_opened_safe"]
 [connection signal="finished" from="Audio/BGM_Music" to="." method="_on_bgm_music_finished"]
