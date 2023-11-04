@@ -6,12 +6,15 @@ var bat: PackedScene = preload("res://scenes/monsters/bat.tscn")
 var ghost: PackedScene = preload("res://scenes/monsters/ghost.tscn")
 var ghoul: PackedScene = preload("res://scenes/monsters/ghoul.tscn")
 var ammo_box: PackedScene = preload("res://scenes/items/ammo_pickup.tscn")
+var medkit: PackedScene = preload("res://scenes/items/health_pickup.tscn")
 
 var is_bat_spawnable: bool = true
 var is_ghost_spawnable: bool = true
 var is_ghoul_spawnable: bool = true
 
+var is_medkit_spawnable: bool = true
 var is_ammo_spawnable: bool = true
+var medkit_count: int  = 0
 var ammo_box_count: int = 0
 
 @onready var song_0: AudioStreamMP3 = load("res://resources/audio/Black Cat  Halloween Autumn Lofi.mp3")
@@ -55,6 +58,11 @@ func _process(_delta):
 		is_ammo_spawnable = false
 	else:
 		is_ammo_spawnable = true
+	
+	if medkit_count > 0:
+		is_medkit_spawnable = false
+	else:
+		is_medkit_spawnable = true
 
 	if is_bat_spawnable:
 		spawn_bat()
@@ -71,6 +79,10 @@ func _process(_delta):
 	if is_ammo_spawnable:
 		ammo_box_count += 1
 		spawn_ammo()
+		
+	if is_medkit_spawnable:
+		medkit_count += 1
+		spawn_medkit()
 
 	if Input.is_action_just_pressed("change_song"):
 		$Audio/BGM_Music.stop()
@@ -151,6 +163,18 @@ func spawn_ammo():
 	new_box.global_position.x += random_offset
 	new_box.connect('ammo_picked_up', _on_player_picked_up_ammo)
 	
+func spawn_medkit():
+	var time = randi_range(30, 60)
+	await get_tree().create_timer(time).timeout
+	
+	var new_med = medkit.instantiate() as Area2D
+	var new_parent = get_tree().get_nodes_in_group("MedSpawn").pick_random()
+	new_parent.add_child(new_med)
+	new_med.global_position = new_parent.global_position
+	var random_offset = randi_range(-5, 5)
+	new_med.global_position.x += random_offset
+	new_med.connect('health_picked_up', _on_health_pickup_health_picked_up)
+	
 func _on_bgm_music_finished():
 	$Audio/BGM_Music.stop()
 	$Audio/BGM_Music.stream = song_array.pick_random()
@@ -170,4 +194,5 @@ func _on_damage_area_damage(damage):
 
 
 func _on_health_pickup_health_picked_up(amount):
+	medkit_count -= 1
 	$Player.mutate_health(amount)

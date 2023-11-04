@@ -163,7 +163,7 @@ func disable_interact_ui():
 
 func give_weapons():
 	is_player_armed = true
-	$HUD.visible = true
+	$HUD.show_weapon_stats()
 
 func _on_door_timer_timeout():
 	pass # Replace with function body.

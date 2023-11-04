@@ -20,3 +20,6 @@ func update_health_value(new_value: int):
 
 func update_stamina_value(new_value: float):
 	$PlayerStats/VBoxContainer2/StaminaBar.value = new_value
+
+func show_weapon_stats():
+	$PlayerStats/VBoxContainer.visible = true

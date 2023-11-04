@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://c4hb8f35j1qd1"]
+[gd_scene load_steps=24 format=3 uid="uid://c4hb8f35j1qd1"]
 
 [ext_resource type="Script" path="res://scenes/main_level.gd" id="1_qvpj3"]
 [ext_resource type="PackedScene" uid="uid://7avrct37qter" path="res://scenes/player/player.tscn" id="2_3uhr4"]
@@ -19,7 +19,6 @@
 [ext_resource type="PackedScene" uid="uid://cn2s4k06jc5o2" path="res://scenes/falling_leaves.tscn" id="16_xk0bw"]
 [ext_resource type="PackedScene" uid="uid://dfdxdm8djbvhw" path="res://scenes/damage_area.tscn" id="18_bbgs1"]
 [ext_resource type="PackedScene" uid="uid://bm4dkqv7ychoi" path="res://scenes/monsters/zombie.tscn" id="19_dhpsj"]
-[ext_resource type="PackedScene" uid="uid://v0ma22drsmg6" path="res://scenes/items/health_pickup.tscn" id="19_jym4m"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_og8rx"]
 size = Vector2(2, 33)
@@ -78,6 +77,25 @@ texture_filter = 1
 position = Vector2(-35, 90.3341)
 scale = Vector2(0.640001, 0.68)
 texture = ExtResource("15_ketov")
+
+[node name="MedkitSpawners" type="Node2D" parent="."]
+position = Vector2(101, 94)
+scale = Vector2(0.715232, 0.715232)
+
+[node name="MedkitSpawnMarker" type="Marker2D" parent="MedkitSpawners" groups=["MedSpawn"]]
+position = Vector2(-131.426, -93.6759)
+
+[node name="MedkitSpawnMarker2" type="Marker2D" parent="MedkitSpawners" groups=["MedSpawn"]]
+position = Vector2(-236.287, 5.59259)
+
+[node name="MedkitSpawnMarker3" type="Marker2D" parent="MedkitSpawners" groups=["MedSpawn"]]
+position = Vector2(-75.5, 6.99074)
+
+[node name="MedkitSpawnMarker4" type="Marker2D" parent="MedkitSpawners" groups=["MedSpawn"]]
+position = Vector2(-12.5833, 6.99074)
+
+[node name="MedkitSpawnMarker5" type="Marker2D" parent="MedkitSpawners" groups=["MedSpawn"]]
+position = Vector2(-83.8889, -44.7407)
 
 [node name="AmmoSpawners" type="Node2D" parent="."]
 position = Vector2(101, 94)
@@ -317,18 +335,13 @@ position = Vector2(12.7876, -52.0906)
 amount = 15
 emission_rect_extents = Vector2(128, 1)
 
-[node name="DamageArea" parent="." instance=ExtResource("18_bbgs1")]
-position = Vector2(14, 21)
-
-[node name="HealthPickup" parent="." instance=ExtResource("19_jym4m")]
-position = Vector2(49, 66)
-scale = Vector2(0.75, 0.75)
-
 [node name="Zombie" parent="." instance=ExtResource("19_dhpsj")]
 position = Vector2(-35, 95)
 scale = Vector2(0.715, 0.715)
 
+[node name="DamageArea" parent="." instance=ExtResource("18_bbgs1")]
+position = Vector2(21, 22)
+
 [connection signal="player_opened_safe" from="weapon_safe" to="." method="_on_weapon_safe_player_opened_safe"]
 [connection signal="finished" from="Audio/BGM_Music" to="." method="_on_bgm_music_finished"]
 [connection signal="damage" from="DamageArea" to="." method="_on_damage_area_damage"]
-[connection signal="health_picked_up" from="HealthPickup" to="." method="_on_health_pickup_health_picked_up"]
