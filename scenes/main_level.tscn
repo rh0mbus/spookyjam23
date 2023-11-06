@@ -67,6 +67,29 @@ scale = Vector2(0.715232, 0.715232)
 [node name="weapon_safe" parent="." instance=ExtResource("7_wpbx2")]
 position = Vector2(-86, 60)
 
+[node name="ZombieSpawners" type="Node2D" parent="."]
+
+[node name="ZombieSpawnMarker" type="Marker2D" parent="ZombieSpawners" groups=["ZombieSpawn"]]
+position = Vector2(9, 90)
+
+[node name="ZombieSpawnMarker2" type="Marker2D" parent="ZombieSpawners" groups=["ZombieSpawn"]]
+position = Vector2(-73, 87)
+
+[node name="ZombieSpawnMarker3" type="Marker2D" parent="ZombieSpawners" groups=["ZombieSpawn"]]
+position = Vector2(-57, 53)
+
+[node name="ZombieSpawnMarker4" type="Marker2D" parent="ZombieSpawners" groups=["ZombieSpawn"]]
+position = Vector2(-13, 19)
+
+[node name="ZombieSpawnMarker5" type="Marker2D" parent="ZombieSpawners" groups=["ZombieSpawn"]]
+position = Vector2(46, 56)
+
+[node name="ZombieSpawnMarker6" type="Marker2D" parent="ZombieSpawners" groups=["ZombieSpawn"]]
+position = Vector2(47, 87)
+
+[node name="ZombieSpawnMarker7" type="Marker2D" parent="ZombieSpawners" groups=["ZombieSpawn"]]
+position = Vector2(88, 86)
+
 [node name="MainInteriorFrontLayer" type="Sprite2D" parent="."]
 texture_filter = 1
 texture = ExtResource("9_xs7al")
@@ -226,6 +249,8 @@ partner = NodePath("../BedroomAtticDoor")
 
 [node name="BlockingVolume" type="StaticBody2D" parent="BlockingVolumes"]
 position = Vector2(-53, 93)
+collision_layer = 2
+collision_mask = 13
 
 [node name="BoxCollider" type="CollisionShape2D" parent="BlockingVolumes/BlockingVolume"]
 position = Vector2(0, -6.5)
@@ -233,6 +258,8 @@ shape = SubResource("RectangleShape2D_og8rx")
 
 [node name="BlockingVolume11" type="StaticBody2D" parent="BlockingVolumes"]
 position = Vector2(107, 93)
+collision_layer = 2
+collision_mask = 13
 
 [node name="BoxCollider" type="CollisionShape2D" parent="BlockingVolumes/BlockingVolume11"]
 position = Vector2(0, -6.5)
@@ -240,6 +267,8 @@ shape = SubResource("RectangleShape2D_og8rx")
 
 [node name="BlockingVolume4" type="StaticBody2D" parent="BlockingVolumes"]
 position = Vector2(27, 93)
+collision_layer = 2
+collision_mask = 13
 
 [node name="BoxCollider" type="CollisionShape2D" parent="BlockingVolumes/BlockingVolume4"]
 position = Vector2(0, -6.5)
@@ -247,6 +276,8 @@ shape = SubResource("RectangleShape2D_og8rx")
 
 [node name="BlockingVolume5" type="StaticBody2D" parent="BlockingVolumes"]
 position = Vector2(27, 59)
+collision_layer = 2
+collision_mask = 13
 
 [node name="BoxCollider" type="CollisionShape2D" parent="BlockingVolumes/BlockingVolume5"]
 position = Vector2(0, -6.5)
@@ -254,6 +285,8 @@ shape = SubResource("RectangleShape2D_og8rx")
 
 [node name="BlockingVolume6" type="StaticBody2D" parent="BlockingVolumes"]
 position = Vector2(-14, 59)
+collision_layer = 2
+collision_mask = 13
 
 [node name="BoxCollider" type="CollisionShape2D" parent="BlockingVolumes/BlockingVolume6"]
 position = Vector2(0, -6.5)
@@ -261,6 +294,8 @@ shape = SubResource("RectangleShape2D_og8rx")
 
 [node name="BlockingVolume7" type="StaticBody2D" parent="BlockingVolumes"]
 position = Vector2(-53, 24)
+collision_layer = 2
+collision_mask = 13
 
 [node name="BoxCollider" type="CollisionShape2D" parent="BlockingVolumes/BlockingVolume7"]
 position = Vector2(0, -6.5)
@@ -268,6 +303,8 @@ shape = SubResource("RectangleShape2D_og8rx")
 
 [node name="BlockingVolume8" type="StaticBody2D" parent="BlockingVolumes"]
 position = Vector2(27, 24)
+collision_layer = 2
+collision_mask = 13
 
 [node name="BoxCollider" type="CollisionShape2D" parent="BlockingVolumes/BlockingVolume8"]
 position = Vector2(0, -6.5)
@@ -275,6 +312,8 @@ shape = SubResource("RectangleShape2D_og8rx")
 
 [node name="BlockingVolume9" type="StaticBody2D" parent="BlockingVolumes"]
 position = Vector2(-13.9896, 34.0521)
+collision_layer = 2
+collision_mask = 13
 
 [node name="BoxCollider" type="CollisionShape2D" parent="BlockingVolumes/BlockingVolume9"]
 rotation = 1.57079
@@ -282,6 +321,8 @@ shape = SubResource("RectangleShape2D_dx581")
 
 [node name="BlockingVolume10" type="StaticBody2D" parent="BlockingVolumes"]
 position = Vector2(-13, 69.0614)
+collision_layer = 2
+collision_mask = 13
 
 [node name="BoxCollider" type="CollisionShape2D" parent="BlockingVolumes/BlockingVolume10"]
 rotation = 1.57079
@@ -289,6 +330,8 @@ shape = SubResource("RectangleShape2D_dx581")
 
 [node name="BlockingVolume2" type="StaticBody2D" parent="BlockingVolumes"]
 position = Vector2(-93, 93)
+collision_layer = 2
+collision_mask = 13
 
 [node name="BoxCollider" type="CollisionShape2D" parent="BlockingVolumes/BlockingVolume2"]
 position = Vector2(0, -24.5)
@@ -296,6 +339,8 @@ shape = SubResource("RectangleShape2D_dk3vk")
 
 [node name="BlockingVolume3" type="StaticBody2D" parent="BlockingVolumes"]
 position = Vector2(67, 93)
+collision_layer = 2
+collision_mask = 13
 
 [node name="BoxCollider" type="CollisionShape2D" parent="BlockingVolumes/BlockingVolume3"]
 position = Vector2(0, -24.5)
@@ -303,6 +348,8 @@ shape = SubResource("RectangleShape2D_dk3vk")
 
 [node name="StaticBody2D" type="StaticBody2D" parent="BlockingVolumes"]
 position = Vector2(-3.1748, 0.0566597)
+collision_layer = 2
+collision_mask = 13
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="BlockingVolumes/StaticBody2D"]
 position = Vector2(6, 113)
@@ -339,29 +386,6 @@ emission_rect_extents = Vector2(128, 1)
 
 [node name="DamageArea" parent="." instance=ExtResource("18_bbgs1")]
 position = Vector2(21, 22)
-
-[node name="ZombieSpawners" type="Node2D" parent="."]
-
-[node name="ZombieSpawnMarker" type="Marker2D" parent="ZombieSpawners" groups=["ZombieSpawn"]]
-position = Vector2(9, 90)
-
-[node name="ZombieSpawnMarker2" type="Marker2D" parent="ZombieSpawners" groups=["ZombieSpawn"]]
-position = Vector2(-73, 87)
-
-[node name="ZombieSpawnMarker3" type="Marker2D" parent="ZombieSpawners" groups=["ZombieSpawn"]]
-position = Vector2(-57, 53)
-
-[node name="ZombieSpawnMarker4" type="Marker2D" parent="ZombieSpawners" groups=["ZombieSpawn"]]
-position = Vector2(-13, 19)
-
-[node name="ZombieSpawnMarker5" type="Marker2D" parent="ZombieSpawners" groups=["ZombieSpawn"]]
-position = Vector2(46, 56)
-
-[node name="ZombieSpawnMarker6" type="Marker2D" parent="ZombieSpawners" groups=["ZombieSpawn"]]
-position = Vector2(47, 87)
-
-[node name="ZombieSpawnMarker7" type="Marker2D" parent="ZombieSpawners" groups=["ZombieSpawn"]]
-position = Vector2(88, 86)
 
 [connection signal="player_opened_safe" from="weapon_safe" to="." method="_on_weapon_safe_player_opened_safe"]
 [connection signal="finished" from="Audio/BGM_Music" to="." method="_on_bgm_music_finished"]

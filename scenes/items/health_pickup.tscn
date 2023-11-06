@@ -7,6 +7,7 @@
 size = Vector2(11.0044, 7.02687)
 
 [node name="HealthPickup" type="Area2D"]
+collision_layer = 4
 script = ExtResource("1_uch0s")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

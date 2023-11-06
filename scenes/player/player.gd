@@ -183,6 +183,5 @@ func update_score(points: int):
 	player_score += points
 	$HUD.update_score(player_score)
 
-
 func _on_test_score_timer_timeout():
 	update_score(50)

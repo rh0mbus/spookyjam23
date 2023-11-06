@@ -12,6 +12,8 @@ height = 24.0
 size = Vector2(14, 24)
 
 [node name="Zombie" type="CharacterBody2D"]
+collision_layer = 8
+collision_mask = 14
 script = ExtResource("1_ycmv8")
 
 [node name="AttackDamageArea" parent="." instance=ExtResource("1_cj7m8")]
@@ -30,6 +32,7 @@ hframes = 9
 [node name="ChangeDirectionTimer" type="Timer" parent="."]
 
 [node name="AttackRange" type="Area2D" parent="."]
+collision_layer = 8
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AttackRange"]
 position = Vector2(3, 0)

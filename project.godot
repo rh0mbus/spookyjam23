@@ -105,6 +105,13 @@ select_weapon_2={
 ]
 }
 
+[layer_names]
+
+2d_physics/layer_1="player"
+2d_physics/layer_2="level"
+2d_physics/layer_3="items"
+2d_physics/layer_4="zombies"
+
 [physics]
 
 2d/default_gravity=440.0
