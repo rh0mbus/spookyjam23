@@ -94,10 +94,10 @@ func _physics_process(delta):
 		velocity.y = JUMP_VELOCITY
 		
 	if is_weapon_equipped:
+		$ReticleSprite/RayCast2D.enabled = true
 		$ReticleSprite.visible = true
 		if Input.is_action_just_pressed("fire") and is_able_to_shoot:
 			is_able_to_shoot = false
-
 			var current_rotation = $ReticleSprite.global_rotation_degrees
 
 			if is_pistol_equipped and pistol_ammo >= 1:
@@ -105,11 +105,13 @@ func _physics_process(delta):
 				pistol_ammo -= 1
 				$HUD.set_pistol_ammo_text(pistol_ammo)
 				do_recoil(current_rotation)
+				do_weapon_trace()
 			elif not is_pistol_equipped and shotgun_ammo >= 1:
 				$ReticleSprite/Shotgun.fire()
 				shotgun_ammo -= 1
 				$HUD.set_shotgun_ammo_text(shotgun_ammo)
 				do_recoil(current_rotation)
+				do_weapon_trace()
 			else:
 				pass
 
@@ -117,6 +119,7 @@ func _physics_process(delta):
 			is_able_to_shoot = true
 	else:
 		$ReticleSprite.visible = false
+		$ReticleSprite/RayCast2D.enabled = false
 
 	var direction = Input.get_axis("left", "right")
 	if direction:
@@ -125,6 +128,14 @@ func _physics_process(delta):
 		velocity.x = move_toward(velocity.x, 0, FRICTION)
 
 	move_and_slide()
+
+func do_weapon_trace():
+	var body = $ReticleSprite/RayCast2D.get_collider()
+	if body:
+		if "handle_shot_damage" in body:
+			print("Got eeeem!")
+		else:
+			print(body.name)
 
 func mutate_health(value: int):
 	if value < 0:

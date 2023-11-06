@@ -1,5 +1,6 @@
 extends CharacterBody2D
 
+signal deal_damage(amount: int)
 
 const SPEED = 7.75
 const ACCELERATION = 1.2
@@ -8,6 +9,8 @@ const FRICTION = 2.0
 var is_alive: bool = true
 var is_able_to_move: bool = true
 var is_moving: bool = false
+
+var attack_damage: int  = 50
 
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 var possible_dir = [Vector2.LEFT.x, Vector2.RIGHT.x]
@@ -40,3 +43,9 @@ func do_zombie_movement():
 	is_moving = false
 	await get_tree().create_timer(wait_time).timeout
 	is_able_to_move = true
+
+func attack():
+	deal_damage.emit(attack_damage)
+
+func handle_shot_damage():
+	print("You shot me!")
