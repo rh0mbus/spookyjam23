@@ -1,0 +1,30 @@
+[gd_scene load_steps=3 format=3 uid="uid://bva42p7kb778r"]
+
+[ext_resource type="Script" path="res://DustParticles.gd" id="1_gnrt7"]
+
+[sub_resource type="Gradient" id="Gradient_pbliu"]
+colors = PackedColorArray(0.470588, 0.447059, 0.380392, 0.698039, 0.470588, 0.447059, 0.380392, 0)
+
+[node name="DustParticles" type="Node2D"]
+script = ExtResource("1_gnrt7")
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+emitting = false
+amount = 16
+one_shot = true
+explosiveness = 0.9
+emission_shape = 2
+emission_sphere_radius = 1.0
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 2.0
+initial_velocity_max = 7.0
+scale_amount_min = 0.1
+scale_amount_max = 0.5
+color_ramp = SubResource("Gradient_pbliu")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 3.0
+one_shot = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
