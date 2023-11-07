@@ -54,6 +54,8 @@ func do_zombie_movement():
 func die():
 	$AnimationPlayer.play("death")
 	is_alive = false
+	zombie_death.emit()
+	$ZombieHitbox.disabled = true
 	is_able_to_move = false
 	$CleanupTimer.start()
 	await $CleanupTimer.timeout

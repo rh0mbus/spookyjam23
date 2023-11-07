@@ -200,8 +200,9 @@ stream = ExtResource("11_4xutx")
 [node name="PlayerHealStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("12_o7oiu")
 
-[node name="TestScoreTimer" type="Timer" parent="."]
+[node name="UpdateScoreTimer" type="Timer" parent="."]
+wait_time = 30.0
 autostart = true
 
 [connection signal="timeout" from="DoorTimer" to="." method="_on_door_timer_timeout"]
-[connection signal="timeout" from="TestScoreTimer" to="." method="_on_test_score_timer_timeout"]
+[connection signal="timeout" from="UpdateScoreTimer" to="." method="_on_update_score_timer_timeout"]

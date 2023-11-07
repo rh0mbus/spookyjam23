@@ -3,7 +3,7 @@ extends Node2D
 @export var sound_clip : AudioStream 	
 
 const MAX_AMMO_COUNT: int = 2
-const MAX_ZOMBIE_COUNT: int = 5
+const MAX_ZOMBIE_COUNT: int = 10
 
 var bat: PackedScene = preload("res://scenes/monsters/bat.tscn")
 var ghost: PackedScene = preload("res://scenes/monsters/ghost.tscn")
@@ -169,10 +169,11 @@ func spawn_ghoul():
 	is_ghoul_spawnable = true
 
 func spawn_zombie():
-	var time = randi_range(15, 60)
+	var time = randi_range(15, 90)
 	await get_tree().create_timer(time).timeout
 	
 	var new_zombie = zombie.instantiate() as CharacterBody2D
+	new_zombie.connect('zombie_death', _handle_zombie_death)
 	var new_parent = get_tree().get_nodes_in_group("ZombieSpawn").pick_random()
 	new_parent.add_child(new_zombie)
 	new_zombie.global_position = new_parent.global_position
@@ -211,6 +212,10 @@ func _on_bgm_music_finished():
 func _on_player_picked_up_ammo(amount: int):
 	ammo_box_count -= 1
 	$Player.add_ammo(amount)
+	
+func _handle_zombie_death():
+	zombie_count -= 1
+	$Player.update_score(50)
 
 func _on_weapon_safe_player_opened_safe():
 	$Player.give_weapons()

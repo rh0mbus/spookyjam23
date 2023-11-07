@@ -32,6 +32,7 @@ var stamina_charge_rate: float = 10.0
 var stamina_drain_rate: float = 100.0
 
 func _ready():
+	update_score(0)
 	$ReticleSprite.visible = false
 
 func _process(delta):
@@ -202,5 +203,6 @@ func update_score(points: int):
 	player_score += points
 	$HUD.update_score(player_score)
 
-func _on_test_score_timer_timeout():
-	update_score(50)
+
+func _on_update_score_timer_timeout():
+	update_score(15)
