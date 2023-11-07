@@ -387,6 +387,9 @@ emission_rect_extents = Vector2(128, 1)
 [node name="DamageArea" parent="." instance=ExtResource("18_bbgs1")]
 position = Vector2(21, 22)
 
+[node name="Particles" type="Node2D" parent="."]
+
+[connection signal="hit_object_with_weapon" from="Player" to="." method="_on_player_hit_object_with_weapon"]
 [connection signal="player_opened_safe" from="weapon_safe" to="." method="_on_weapon_safe_player_opened_safe"]
 [connection signal="finished" from="Audio/BGM_Music" to="." method="_on_bgm_music_finished"]
 [connection signal="damage" from="DamageArea" to="." method="_on_damage_area_damage"]

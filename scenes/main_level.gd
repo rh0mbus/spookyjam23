@@ -12,6 +12,8 @@ var ammo_box: PackedScene = preload("res://scenes/items/ammo_pickup.tscn")
 var medkit: PackedScene = preload("res://scenes/items/health_pickup.tscn")
 var zombie: PackedScene = preload("res://scenes/monsters/zombie.tscn")
 
+var blood_fx: PackedScene = preload("res://scenes/blood_spray.tscn")
+
 var is_bat_spawnable: bool = true
 var is_ghost_spawnable: bool = true
 var is_ghoul_spawnable: bool = true
@@ -219,3 +221,13 @@ func _on_damage_area_damage(damage):
 func _on_health_pickup_health_picked_up(amount):
 	medkit_count -= 1
 	$Player.mutate_health(amount)
+
+
+func _on_player_hit_object_with_weapon(location, target_hit):
+	if target_hit:
+		print("Spawn blood particles at: ", location)
+		var blood_particles = blood_fx.instantiate() as Node2D
+		$Particles.add_child(blood_particles)
+		blood_particles.global_position = location
+	else:
+		print("Spawn dust particles at: ", location)

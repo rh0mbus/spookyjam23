@@ -1,5 +1,7 @@
 extends CharacterBody2D
 
+signal hit_object_with_weapon(location: Vector2, target_hit: bool)
+
 var speed: float = 20.0 #35 when running
 
 const FRICTION: float = 4.0
@@ -19,11 +21,12 @@ var target_room_location: Vector2
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
 var is_player_armed: bool = false
-var pistol_ammo: int = 18
-var shotgun_ammo: int = 6
+var pistol_ammo: int = 15
+var shotgun_ammo: int = 5
 
 var health: int = 100
 var stamina: float = 100.0
+var current_damage: int = 25
 var player_score: int = 0 # TODO Add scoring system
 var stamina_charge_rate: float = 10.0
 var stamina_drain_rate: float = 100.0
@@ -75,6 +78,7 @@ func _process(delta):
 		is_pistol_equipped = true
 		recoil_amount = 20
 		reload_time = 0.2
+		current_damage = 25
 		$ReticleSprite/Pistol.equip()
 		$ReticleSprite/Shotgun.unequip()
 	
@@ -83,6 +87,7 @@ func _process(delta):
 		recoil_amount = 50
 		is_pistol_equipped = false
 		reload_time = 0.55
+		current_damage = 50
 		$ReticleSprite/Pistol.unequip()
 		$ReticleSprite/Shotgun.equip()
 	
@@ -133,9 +138,12 @@ func do_weapon_trace():
 	var body = $ReticleSprite/RayCast2D.get_collider()
 	if body:
 		if "handle_shot_damage" in body:
-			print("Got eeeem!")
+			# Hit zombie
+			body.handle_shot_damage(current_damage)
+			hit_object_with_weapon.emit($ReticleSprite/RayCast2D.get_collision_point(), true)
 		else:
-			print(body.name)
+			# Hit shootable wall
+			hit_object_with_weapon.emit($ReticleSprite/RayCast2D.get_collision_point(), false)
 
 func mutate_health(value: int):
 	if value < 0:
