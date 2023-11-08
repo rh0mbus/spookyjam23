@@ -1,0 +1,784 @@
+[gd_scene load_steps=21 format=3 uid="uid://bsg3ihkjoux4t"]
+
+[ext_resource type="Texture2D" uid="uid://ylqxf5t675rj" path="res://resources/sprites/level/background_layer.png" id="1_6vfgo"]
+[ext_resource type="Script" path="res://scenes/intro_movie.gd" id="1_qxgv0"]
+[ext_resource type="Texture2D" uid="uid://bdmywcxoetpe1" path="res://resources/sprites/level/main_clouds.png" id="2_24xrh"]
+[ext_resource type="Texture2D" uid="uid://4b4jk2a3v1dp" path="res://resources/sprites/level/main_interior_back_layer.png" id="3_wpdjv"]
+[ext_resource type="Texture2D" uid="uid://brt7fd1anjmn0" path="res://resources/sprites/level/main_interior_front_layer.png" id="4_7ghne"]
+[ext_resource type="Texture2D" uid="uid://ci2hoqhhkll5s" path="res://resources/sprites/level/main_atmosphere.png" id="5_nqgdt"]
+[ext_resource type="Texture2D" uid="uid://dxmxghkqxyyfk" path="res://resources/sprites/menu/main_menu.png" id="6_ktylq"]
+[ext_resource type="Texture2D" uid="uid://crftmfa4pbxp4" path="res://resources/sprites/player.png" id="7_j78p1"]
+[ext_resource type="Texture2D" uid="uid://b8ord62teqw40" path="res://resources/sprites/clown_guest.png" id="8_knvaq"]
+[ext_resource type="Texture2D" uid="uid://tbuko3gw2bin" path="res://resources/sprites/cowboy_guest.png" id="9_gjpoa"]
+[ext_resource type="Texture2D" uid="uid://rptxubl4obwm" path="res://resources/sprites/alien_guest.png" id="10_8ubpr"]
+[ext_resource type="Texture2D" uid="uid://bwkxpm5i6wwl5" path="res://resources/sprites/text_card.png" id="11_1gyko"]
+[ext_resource type="FontFile" uid="uid://cv25gg3nbtxl" path="res://resources/fonts/Pixeltype.ttf" id="12_lof53"]
+[ext_resource type="AudioStream" uid="uid://8d85p7p6wkle" path="res://resources/audio/Wind - Sound Effect (NoCopyright).mp3" id="14_msc4p"]
+[ext_resource type="AudioStream" uid="uid://bmtjdwjbkbp66" path="res://resources/audio/684756__supersouper__glassshatterexplode.wav" id="14_yv0mg"]
+[ext_resource type="AudioStream" uid="uid://cnkdu8u6t1xpm" path="res://resources/audio/Summer Wind Through Leaves Sound Effect  Copyright Free Nature Sounds.mp3" id="15_dl3fe"]
+[ext_resource type="AudioStream" uid="uid://v8uu8j7ro665" path="res://resources/audio/Lofi Astronaut - Haunted House.mp3" id="16_6nlli"]
+
+[sub_resource type="Animation" id="Animation_wq30p"]
+resource_name = "main_track"
+length = 35.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 27.2, 28),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 1), Color(0, 0, 0, 0), Color(0, 0, 0, 0), Color(0, 0, 0, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("TextCard3:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 10.7, 11.5, 13.4, 13.9),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("TextCard2:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 9.7, 10.1, 13.4, 13.9),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("TextCard:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 5, 7, 8.3, 9),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Camera2D:zoom")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(13.7, 18.1, 19.4, 20.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(6, 6), Vector2(5.5, 5.5), Vector2(5.5, 5.5), Vector2(7, 7)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("TextCard4:modulate")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 7.3, 7.8, 8.3, 9),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("AlienGuest:position")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(14, 15.5, 15.6, 17.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(-5.81745, 93.6022), Vector2(1, 105), Vector2(-2, 109), Vector2(-7, 122)]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("ClownGuest:position")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(13.9, 14.5, 15.5, 17.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(13.2122, 94.4725), Vector2(11, 98), Vector2(14, 110), Vector2(21, 125)]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("CowboyGuest:position")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(13.9, 15, 15.5, 17.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(4.24507, 92.9844), Vector2(3, 100), Vector2(-2, 120), Vector2(3, 125)]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("ClownGuest:modulate")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(13.9, 14.6, 15.5, 16.6, 17.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("CowboyGuest:modulate")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(13.9, 15, 15.5, 16.6, 17.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/11/type = "value"
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/path = NodePath("AlienGuest:modulate")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/keys = {
+"times": PackedFloat32Array(14, 15.5, 15.6, 16.6, 17.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0.0625002), Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/12/type = "value"
+tracks/12/imported = false
+tracks/12/enabled = true
+tracks/12/path = NodePath("Outside:modulate")
+tracks/12/interp = 1
+tracks/12/loop_wrap = true
+tracks/12/keys = {
+"times": PackedFloat32Array(14.7, 16, 17.5, 18),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/13/type = "value"
+tracks/13/imported = false
+tracks/13/enabled = true
+tracks/13/path = NodePath("Player:position")
+tracks/13/interp = 1
+tracks/13/loop_wrap = true
+tracks/13/keys = {
+"times": PackedFloat32Array(18.2, 20.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(-22, 94), Vector2(16, 94)]
+}
+tracks/14/type = "value"
+tracks/14/imported = false
+tracks/14/enabled = true
+tracks/14/path = NodePath("TextCard5:modulate")
+tracks/14/interp = 1
+tracks/14/loop_wrap = true
+tracks/14/keys = {
+"times": PackedFloat32Array(19.8, 20.5, 26.1, 26.8),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/15/type = "value"
+tracks/15/imported = false
+tracks/15/enabled = true
+tracks/15/path = NodePath("TextCard5/Label:modulate")
+tracks/15/interp = 1
+tracks/15/loop_wrap = true
+tracks/15/keys = {
+"times": PackedFloat32Array(20.5, 22, 22.6),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 1), Color(0, 0, 0, 1), Color(0, 0, 0, 0)]
+}
+tracks/16/type = "value"
+tracks/16/imported = false
+tracks/16/enabled = true
+tracks/16/path = NodePath("TextCard5/Label2:modulate")
+tracks/16/interp = 1
+tracks/16/loop_wrap = true
+tracks/16/keys = {
+"times": PackedFloat32Array(20.6, 22.6, 23.1, 23.6, 24.1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 0), Color(0, 0, 0, 0), Color(0, 0, 0, 1), Color(0, 0, 0, 1), Color(0, 0, 0, 0)]
+}
+tracks/17/type = "value"
+tracks/17/imported = false
+tracks/17/enabled = true
+tracks/17/path = NodePath("TextCard5/Label3:modulate")
+tracks/17/interp = 1
+tracks/17/loop_wrap = true
+tracks/17/keys = {
+"times": PackedFloat32Array(19.1, 24.1, 24.6, 26.1, 26.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 0), Color(0, 0, 0, 0), Color(0, 0, 0, 1), Color(0, 0, 0, 1), Color(0, 0, 0, 0)]
+}
+tracks/18/type = "value"
+tracks/18/imported = false
+tracks/18/enabled = true
+tracks/18/path = NodePath("GlassShatterStream:playing")
+tracks/18/interp = 1
+tracks/18/loop_wrap = true
+tracks/18/keys = {
+"times": PackedFloat32Array(22.3),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/19/type = "value"
+tracks/19/imported = false
+tracks/19/enabled = true
+tracks/19/path = NodePath("Label:modulate")
+tracks/19/interp = 1
+tracks/19/loop_wrap = true
+tracks/19/keys = {
+"times": PackedFloat32Array(29, 29.3, 32.5, 33),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/20/type = "method"
+tracks/20/imported = false
+tracks/20/enabled = true
+tracks/20/path = NodePath(".")
+tracks/20/interp = 1
+tracks/20/loop_wrap = true
+tracks/20/keys = {
+"times": PackedFloat32Array(32.5, 34.9),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": [],
+"method": &"transition_out"
+}, {
+"args": [],
+"method": &"load_main_scene"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_ps7ny"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0, 0, 0, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("TextCard3:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("TextCard2:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("TextCard:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Camera2D:zoom")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(5, 5)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("TextCard4:modulate")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("AlienGuest:position")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-5.81745, 93.6022)]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("ClownGuest:position")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(13.2122, 94.4725)]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("CowboyGuest:position")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(4.24507, 92.9844)]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("ClownGuest:modulate")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("CowboyGuest:modulate")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/11/type = "value"
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/path = NodePath("AlienGuest:modulate")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/12/type = "value"
+tracks/12/imported = false
+tracks/12/enabled = true
+tracks/12/path = NodePath("Outside:modulate")
+tracks/12/interp = 1
+tracks/12/loop_wrap = true
+tracks/12/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/13/type = "value"
+tracks/13/imported = false
+tracks/13/enabled = true
+tracks/13/path = NodePath("Player:position")
+tracks/13/interp = 1
+tracks/13/loop_wrap = true
+tracks/13/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-22, 94)]
+}
+tracks/14/type = "value"
+tracks/14/imported = false
+tracks/14/enabled = true
+tracks/14/path = NodePath("TextCard5:modulate")
+tracks/14/interp = 1
+tracks/14/loop_wrap = true
+tracks/14/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/15/type = "value"
+tracks/15/imported = false
+tracks/15/enabled = true
+tracks/15/path = NodePath("TextCard5/Label:modulate")
+tracks/15/interp = 1
+tracks/15/loop_wrap = true
+tracks/15/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0, 0, 0, 1)]
+}
+tracks/16/type = "value"
+tracks/16/imported = false
+tracks/16/enabled = true
+tracks/16/path = NodePath("TextCard5/Label2:modulate")
+tracks/16/interp = 1
+tracks/16/loop_wrap = true
+tracks/16/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0, 0, 0, 0)]
+}
+tracks/17/type = "value"
+tracks/17/imported = false
+tracks/17/enabled = true
+tracks/17/path = NodePath("TextCard5/Label3:modulate")
+tracks/17/interp = 1
+tracks/17/loop_wrap = true
+tracks/17/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0, 0, 0, 0)]
+}
+tracks/18/type = "value"
+tracks/18/imported = false
+tracks/18/enabled = true
+tracks/18/path = NodePath("GlassShatterStream:playing")
+tracks/18/interp = 1
+tracks/18/loop_wrap = true
+tracks/18/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/19/type = "value"
+tracks/19/imported = false
+tracks/19/enabled = true
+tracks/19/path = NodePath("Label:modulate")
+tracks/19/interp = 1
+tracks/19/loop_wrap = true
+tracks/19/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_4dmug"]
+_data = {
+"RESET": SubResource("Animation_ps7ny"),
+"main_track": SubResource("Animation_wq30p")
+}
+
+[node name="Node2D" type="Node2D"]
+script = ExtResource("1_qxgv0")
+
+[node name="BackgroundLayer" type="Sprite2D" parent="."]
+texture_filter = 1
+texture = ExtResource("1_6vfgo")
+
+[node name="MainClouds" type="Sprite2D" parent="."]
+texture_filter = 1
+texture = ExtResource("2_24xrh")
+
+[node name="MainInteriorBackLayer" type="Sprite2D" parent="."]
+texture_filter = 1
+texture = ExtResource("3_wpdjv")
+
+[node name="MainInteriorFrontLayer" type="Sprite2D" parent="."]
+texture_filter = 1
+texture = ExtResource("4_7ghne")
+
+[node name="MainAtmosphere" type="Sprite2D" parent="."]
+texture_filter = 1
+texture = ExtResource("5_nqgdt")
+
+[node name="Player" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(-22, 94)
+texture = ExtResource("7_j78p1")
+
+[node name="Outside" type="Sprite2D" parent="."]
+modulate = Color(1, 1, 1, 0)
+texture_filter = 1
+texture = ExtResource("6_ktylq")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "main_track"
+libraries = {
+"": SubResource("AnimationLibrary_4dmug")
+}
+
+[node name="ClownGuest" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(13.2122, 94.4725)
+texture = ExtResource("8_knvaq")
+hframes = 3
+
+[node name="CowboyGuest" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(4.24507, 92.9844)
+scale = Vector2(1.2, 1.2)
+texture = ExtResource("9_gjpoa")
+hframes = 3
+
+[node name="AlienGuest" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(-5.81745, 93.6022)
+scale = Vector2(0.945, 0.945)
+texture = ExtResource("10_8ubpr")
+hframes = 3
+
+[node name="TextCard" type="Sprite2D" parent="."]
+modulate = Color(1, 1, 1, 0)
+texture_filter = 1
+position = Vector2(-24, 71)
+scale = Vector2(0.6, 0.6)
+texture = ExtResource("11_1gyko")
+
+[node name="Label" type="Label" parent="TextCard"]
+modulate = Color(0, 0, 0, 1)
+texture_filter = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -51.39
+offset_top = -0.792236
+offset_right = 29.61
+offset_bottom = 22.2078
+grow_horizontal = 2
+scale = Vector2(0.47, 0.47)
+theme_override_fonts/font = ExtResource("12_lof53")
+text = "Ok, see you later!"
+metadata/_edit_use_anchors_ = true
+
+[node name="TextCard4" type="Sprite2D" parent="."]
+modulate = Color(1, 1, 1, 0)
+texture_filter = 1
+position = Vector2(12, 74)
+scale = Vector2(0.6, 0.6)
+texture = ExtResource("11_1gyko")
+
+[node name="Label" type="Label" parent="TextCard4"]
+modulate = Color(0, 0, 0, 1)
+texture_filter = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -47.0
+offset_top = -1.66669
+offset_right = 34.0
+offset_bottom = 21.3334
+grow_horizontal = 2
+scale = Vector2(0.47, 0.47)
+theme_override_fonts/font = ExtResource("12_lof53")
+text = "See ya later!"
+metadata/_edit_use_anchors_ = true
+
+[node name="TextCard5" type="Sprite2D" parent="."]
+modulate = Color(1, 1, 1, 0)
+texture_filter = 1
+position = Vector2(4, 76)
+scale = Vector2(0.6, 0.6)
+texture = ExtResource("11_1gyko")
+
+[node name="Label" type="Label" parent="TextCard5"]
+modulate = Color(0, 0, 0, 1)
+texture_filter = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -51.6317
+offset_top = -4.43823
+offset_right = 48.3683
+offset_bottom = 21.5618
+grow_horizontal = 2
+scale = Vector2(0.39, 0.39)
+theme_override_fonts/font = ExtResource("12_lof53")
+text = "Well, I better clean up
+a bit before bed..."
+metadata/_edit_use_anchors_ = true
+
+[node name="Label2" type="Label" parent="TextCard5"]
+modulate = Color(0, 0, 0, 0)
+texture_filter = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -42.0
+offset_top = -3.33334
+offset_right = 58.0
+offset_bottom = 22.6667
+grow_horizontal = 2
+scale = Vector2(0.845, 0.845)
+theme_override_fonts/font = ExtResource("12_lof53")
+text = "!!!!!!!!!!!!"
+metadata/_edit_use_anchors_ = true
+
+[node name="Label3" type="Label" parent="TextCard5"]
+modulate = Color(0, 0, 0, 0)
+texture_filter = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -51.6689
+offset_top = -4.21622
+offset_right = 48.3311
+offset_bottom = 21.7838
+grow_horizontal = 2
+scale = Vector2(0.475, 0.475)
+theme_override_fonts/font = ExtResource("12_lof53")
+text = "There's someone
+      in the house!"
+metadata/_edit_use_anchors_ = true
+
+[node name="TextCard2" type="Sprite2D" parent="."]
+modulate = Color(1, 1, 1, 0)
+texture_filter = 1
+position = Vector2(9, 76)
+scale = Vector2(0.6, 0.6)
+texture = ExtResource("11_1gyko")
+
+[node name="Label" type="Label" parent="TextCard2"]
+modulate = Color(0, 0, 0, 1)
+texture_filter = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -50.6651
+offset_top = -0.80714
+offset_right = 30.3349
+offset_bottom = 22.1929
+grow_horizontal = 2
+scale = Vector2(0.47, 0.47)
+theme_override_fonts/font = ExtResource("12_lof53")
+text = "Happy Halloween!"
+metadata/_edit_use_anchors_ = true
+
+[node name="TextCard3" type="Sprite2D" parent="."]
+modulate = Color(1, 1, 1, 0)
+texture_filter = 1
+position = Vector2(-24, 75)
+scale = Vector2(0.6, 0.6)
+texture = ExtResource("11_1gyko")
+
+[node name="Label" type="Label" parent="TextCard3"]
+modulate = Color(0, 0, 0, 1)
+texture_filter = 1
+anchors_preset = -1
+anchor_left = 0.491628
+anchor_top = -0.227007
+anchor_right = 0.491628
+anchor_bottom = -0.0137149
+offset_left = -50.4642
+offset_top = 3.26424
+offset_right = 30.5358
+offset_bottom = 26.2643
+grow_horizontal = 2
+scale = Vector2(0.47, 0.47)
+theme_override_fonts/font = ExtResource("12_lof53")
+text = "Happy Halloween
+      everyone!"
+metadata/_edit_use_anchors_ = true
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(3, 72)
+zoom = Vector2(5, 5)
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_left = -98.0
+offset_top = -10.0
+offset_right = 102.0
+offset_bottom = 145.0
+color = Color(0, 0, 0, 1)
+
+[node name="Label" type="Label" parent="."]
+modulate = Color(1, 1, 1, 0)
+texture_filter = 1
+offset_left = -43.0
+offset_top = 58.0
+offset_right = 156.0
+offset_bottom = 84.0
+scale = Vector2(0.685, 0.685)
+theme_override_fonts/font = ExtResource("12_lof53")
+text = "I should get the guns out of
+       safe in the bedroom to
+       deal with these freaks!"
+
+[node name="GlassShatterStream" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("14_yv0mg")
+volume_db = -15.0
+pitch_scale = 0.8
+
+[node name="WindAudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("14_msc4p")
+volume_db = -12.0
+autoplay = true
+
+[node name="RainAudioStreamPlayer2" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("15_dl3fe")
+volume_db = -5.0
+autoplay = true
+
+[node name="BGM" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("16_6nlli")
+volume_db = -80.0
+autoplay = true

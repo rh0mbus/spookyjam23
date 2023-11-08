@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-signal deal_damage(amount: int)
+signal spawn_damage_area(spawn_position: Vector2)
 signal zombie_death
 
 const SPEED = 7.75
@@ -12,6 +12,7 @@ var health: int = 100
 var is_alive: bool = true
 var is_able_to_move: bool = true
 var is_moving: bool = false
+var is_able_to_attack: bool = true
 
 var attack_damage: int  = 50
 
@@ -52,6 +53,9 @@ func do_zombie_movement():
 	is_able_to_move = true
 
 func die():
+	if $AnimationPlayer.is_playing():
+		$AnimationPlayer.stop()
+	$AttackRange/CollisionShape2D.disabled = true
 	$AnimationPlayer.play("death")
 	is_alive = false
 	zombie_death.emit()
@@ -61,8 +65,16 @@ func die():
 	await $CleanupTimer.timeout
 	queue_free()
 
-func attack():
-	deal_damage.emit(attack_damage)
-
 func handle_shot_damage(damage: int):
 	health -= damage
+
+func _on_attack_range_body_entered(body):
+	if "mutate_health" in body and is_able_to_attack:
+		is_able_to_attack = false
+		$AnimationPlayer.play("attack")
+		await $AnimationPlayer.animation_finished
+		$AnimationPlayer.play("idle")
+		is_able_to_attack = true
+
+func spawn_attack_damage():
+	spawn_damage_area.emit($AtackDamageSpawn.global_position)

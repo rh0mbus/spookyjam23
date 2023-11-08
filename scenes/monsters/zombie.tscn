@@ -1,15 +1,16 @@
-[gd_scene load_steps=10 format=3 uid="uid://bm4dkqv7ychoi"]
+[gd_scene load_steps=12 format=3 uid="uid://bm4dkqv7ychoi"]
 
-[ext_resource type="PackedScene" uid="uid://dfdxdm8djbvhw" path="res://scenes/damage_area.tscn" id="1_cj7m8"]
 [ext_resource type="Texture2D" uid="uid://bo335olmls70e" path="res://resources/sprites/zombie_sheet.png" id="1_n2f4q"]
 [ext_resource type="Script" path="res://scenes/monsters/zombie.gd" id="1_ycmv8"]
+[ext_resource type="AudioStream" uid="uid://dnao8et01evb1" path="res://resources/audio/316228__littlerobotsoundfactory__zombie_51.wav" id="4_iobg2"]
+[ext_resource type="AudioStream" uid="uid://cpnvgge8w8qxm" path="res://resources/audio/316261__littlerobotsoundfactory__zombie_35.wav" id="5_tix77"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_lkaan"]
 radius = 5.0
 height = 24.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_a6y6p"]
-size = Vector2(14, 24)
+size = Vector2(3, 19)
 
 [sub_resource type="Animation" id="Animation_jn35m"]
 resource_name = "idle"
@@ -41,6 +42,18 @@ tracks/0/keys = {
 "update": 1,
 "values": [0]
 }
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ZombieAttackStreamPlayer:playing")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
 
 [sub_resource type="Animation" id="Animation_0c6sg"]
 resource_name = "death"
@@ -58,9 +71,51 @@ tracks/0/keys = {
 "values": [1, 2, 3, 4]
 }
 
+[sub_resource type="Animation" id="Animation_oc6w1"]
+resource_name = "attack"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ZombieSprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.7),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [5, 7, 8]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ZombieAttackStreamPlayer:playing")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.7),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.8),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"spawn_attack_damage"
+}]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_wmvbc"]
 _data = {
 "RESET": SubResource("Animation_3ew2s"),
+"attack": SubResource("Animation_oc6w1"),
 "death": SubResource("Animation_0c6sg"),
 "idle": SubResource("Animation_jn35m")
 }
@@ -69,9 +124,6 @@ _data = {
 collision_layer = 8
 collision_mask = 14
 script = ExtResource("1_ycmv8")
-
-[node name="AttackDamageArea" parent="." instance=ExtResource("1_cj7m8")]
-position = Vector2(9.25, -5.0625)
 
 [node name="ZombieHitbox" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_lkaan")
@@ -83,13 +135,16 @@ scale = Vector2(1.35, 1.35)
 texture = ExtResource("1_n2f4q")
 hframes = 9
 
+[node name="AtackDamageSpawn" type="Marker2D" parent="."]
+position = Vector2(10, -7)
+
 [node name="ChangeDirectionTimer" type="Timer" parent="."]
 
 [node name="AttackRange" type="Area2D" parent="."]
 collision_layer = 8
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AttackRange"]
-position = Vector2(3, 0)
+position = Vector2(6, 2)
 shape = SubResource("RectangleShape2D_a6y6p")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
@@ -101,3 +156,15 @@ libraries = {
 [node name="CleanupTimer" type="Timer" parent="."]
 wait_time = 30.0
 one_shot = true
+
+[node name="ZombieMoanStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_iobg2")
+volume_db = -12.0
+pitch_scale = 0.75
+
+[node name="ZombieAttackStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_tix77")
+volume_db = -30.0
+pitch_scale = 0.8
+
+[connection signal="body_entered" from="AttackRange" to="." method="_on_attack_range_body_entered"]

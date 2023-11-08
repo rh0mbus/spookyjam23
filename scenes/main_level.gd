@@ -12,6 +12,8 @@ var ammo_box: PackedScene = preload("res://scenes/items/ammo_pickup.tscn")
 var medkit: PackedScene = preload("res://scenes/items/health_pickup.tscn")
 var zombie: PackedScene = preload("res://scenes/monsters/zombie.tscn")
 
+var attack_area: PackedScene = preload("res://scenes/damage_area.tscn")
+
 var blood_fx: PackedScene = preload("res://scenes/blood_spray.tscn")
 var dust_fx: PackedScene = preload("res://scenes/dust_particles.tscn")
 
@@ -175,6 +177,7 @@ func spawn_zombie():
 	
 	var new_zombie = zombie.instantiate() as CharacterBody2D
 	new_zombie.connect('zombie_death', _handle_zombie_death)
+	new_zombie.connect('spawn_damage_area', _handle_spawn_attack_area)
 	var new_parent = get_tree().get_nodes_in_group("ZombieSpawn").pick_random()
 	new_parent.add_child(new_zombie)
 	new_zombie.global_position = new_parent.global_position
@@ -221,7 +224,7 @@ func _handle_zombie_death():
 func _on_weapon_safe_player_opened_safe():
 	$Player.give_weapons()
 
-func _on_damage_area_damage(damage):
+func _on_damage_area_entered(damage):
 	$Player.mutate_health(damage)
 
 func _on_health_pickup_health_picked_up(amount):
@@ -237,3 +240,9 @@ func _on_player_hit_object_with_weapon(location, target_hit):
 		var dust_particles = dust_fx.instantiate() as Node2D
 		$Particles.add_child(dust_particles)
 		dust_particles.global_position = location
+
+func _handle_spawn_attack_area(position):
+	var new_damage_area = attack_area.instantiate() as Area2D
+	$AttackAreaContainer.add_child(new_damage_area)
+	new_damage_area.connect('damage', _on_damage_area_entered)
+	new_damage_area.global_position = position
