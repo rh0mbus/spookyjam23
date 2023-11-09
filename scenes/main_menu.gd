@@ -6,10 +6,6 @@ var intro_scene: PackedScene = preload("res://scenes/intro_movie.tscn")
 func _ready():
 	TransitionLayer.fade_in()
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(_delta):
-	pass
-
 func _on_play_button_pressed():
 	get_tree().change_scene_to_packed(intro_scene)
 

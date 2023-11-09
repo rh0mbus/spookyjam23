@@ -12,22 +12,6 @@ height = 24.0
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_a6y6p"]
 size = Vector2(3, 19)
 
-[sub_resource type="Animation" id="Animation_jn35m"]
-resource_name = "idle"
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("ZombieSprite:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [0]
-}
-
 [sub_resource type="Animation" id="Animation_3ew2s"]
 length = 0.001
 tracks/0/type = "value"
@@ -53,22 +37,6 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [false]
-}
-
-[sub_resource type="Animation" id="Animation_0c6sg"]
-resource_name = "death"
-length = 1.5
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("ZombieSprite:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.4, 1),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 1,
-"values": [1, 2, 3, 4]
 }
 
 [sub_resource type="Animation" id="Animation_oc6w1"]
@@ -110,6 +78,38 @@ tracks/2/keys = {
 "args": [],
 "method": &"spawn_attack_damage"
 }]
+}
+
+[sub_resource type="Animation" id="Animation_0c6sg"]
+resource_name = "death"
+length = 1.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ZombieSprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.4, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [1, 2, 3, 4]
+}
+
+[sub_resource type="Animation" id="Animation_jn35m"]
+resource_name = "idle"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ZombieSprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_wmvbc"]
@@ -159,7 +159,7 @@ one_shot = true
 
 [node name="ZombieMoanStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("4_iobg2")
-volume_db = -12.0
+volume_db = -30.0
 pitch_scale = 0.75
 
 [node name="ZombieAttackStreamPlayer" type="AudioStreamPlayer" parent="."]

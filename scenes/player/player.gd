@@ -1,6 +1,7 @@
 extends CharacterBody2D
 
 signal hit_object_with_weapon(location: Vector2, target_hit: bool)
+signal player_died
 
 var speed: float = 20.0 #35 when running
 
@@ -24,6 +25,7 @@ var is_player_armed: bool = false
 var pistol_ammo: int = 15
 var shotgun_ammo: int = 5
 
+var is_alive: bool = true
 var health: int = 100
 var stamina: float = 100.0
 var current_damage: int = 25
@@ -34,64 +36,69 @@ var stamina_drain_rate: float = 100.0
 func _ready():
 	update_score(0)
 	$ReticleSprite.visible = false
+	self.scale = Vector2(0.715, 0.715)
 
 func _process(delta):
-	var current_rotation = $ReticleSprite.global_rotation_degrees
+	if is_alive:
+		if health <= 0:
+			die()
 
-	if current_rotation >= -90 and current_rotation <= 90:
-		$ReticleSprite/Pistol.flip_h = false
-		$ReticleSprite/Pistol.flip_v = false
-		$ReticleSprite/Shotgun.flip_h = true
-		$ReticleSprite/Shotgun.flip_v = false
-	else:
-		$ReticleSprite/Pistol.flip_h = false
-		$ReticleSprite/Pistol.flip_v = true
-		$ReticleSprite/Shotgun.flip_h = true
-		$ReticleSprite/Shotgun.flip_v = true
-	
-	if is_able_to_change_rooms:
-		$UI.show()
-		if Input.is_action_just_pressed("interact"):
-			change_rooms()
-	else:
-		$UI.hide()
+		var current_rotation = $ReticleSprite.global_rotation_degrees
 
-	if stamina == 0:
-		is_able_to_sprint = false
-	elif stamina >= 25:
-		is_able_to_sprint = true
-	
-	if Input.is_action_pressed("sprint") and is_able_to_sprint:
-		speed = 35.0
-		stamina -= delta * stamina_drain_rate
-		stamina = clamp(stamina, 0.0, 100.0)
-		$HUD.update_stamina_value(stamina)
-	else:
-		stamina += delta * stamina_charge_rate
-		stamina = clamp(stamina, 0.0, 100.0)
-		$HUD.update_stamina_value(stamina)
+		if current_rotation >= -90 and current_rotation <= 90:
+			$ReticleSprite/Pistol.flip_h = false
+			$ReticleSprite/Pistol.flip_v = false
+			$ReticleSprite/Shotgun.flip_h = true
+			$ReticleSprite/Shotgun.flip_v = false
+		else:
+			$ReticleSprite/Pistol.flip_h = false
+			$ReticleSprite/Pistol.flip_v = true
+			$ReticleSprite/Shotgun.flip_h = true
+			$ReticleSprite/Shotgun.flip_v = true
+		
+		if is_able_to_change_rooms:
+			$UI.show()
+			if Input.is_action_just_pressed("interact"):
+				change_rooms()
+		else:
+			$UI.hide()
 
-	if Input.is_action_just_released("sprint") or not is_able_to_sprint:
-		speed = 20.0
+		if stamina == 0:
+			is_able_to_sprint = false
+		elif stamina >= 25:
+			is_able_to_sprint = true
+		
+		if Input.is_action_pressed("sprint") and is_able_to_sprint:
+			speed = 35.0
+			stamina -= delta * stamina_drain_rate
+			stamina = clamp(stamina, 0.0, 100.0)
+			$HUD.update_stamina_value(stamina)
+		else:
+			stamina += delta * stamina_charge_rate
+			stamina = clamp(stamina, 0.0, 100.0)
+			$HUD.update_stamina_value(stamina)
 
-	if is_player_armed and Input.is_action_just_pressed("select_weapon_1"):
-		is_weapon_equipped = true
-		is_pistol_equipped = true
-		recoil_amount = 20
-		reload_time = 0.2
-		current_damage = 25
-		$ReticleSprite/Pistol.equip()
-		$ReticleSprite/Shotgun.unequip()
-	
-	if is_player_armed and Input.is_action_just_pressed("select_weapon_2"):
-		is_weapon_equipped = true
-		recoil_amount = 50
-		is_pistol_equipped = false
-		reload_time = 0.55
-		current_damage = 50
-		$ReticleSprite/Pistol.unequip()
-		$ReticleSprite/Shotgun.equip()
-	
+		if Input.is_action_just_released("sprint") or not is_able_to_sprint:
+			speed = 20.0
+
+		if is_player_armed and Input.is_action_just_pressed("select_weapon_1"):
+			is_weapon_equipped = true
+			is_pistol_equipped = true
+			recoil_amount = 20
+			reload_time = 0.2
+			current_damage = 25
+			$ReticleSprite/Pistol.equip()
+			$ReticleSprite/Shotgun.unequip()
+		
+		if is_player_armed and Input.is_action_just_pressed("select_weapon_2"):
+			is_weapon_equipped = true
+			recoil_amount = 50
+			is_pistol_equipped = false
+			reload_time = 0.55
+			current_damage = 50
+			$ReticleSprite/Pistol.unequip()
+			$ReticleSprite/Shotgun.equip()
+
 func _physics_process(delta):
 	if not is_on_floor():
 		velocity.y += gravity * delta
@@ -132,8 +139,23 @@ func _physics_process(delta):
 		velocity.x = move_toward(velocity.x, speed * direction, ACCELERATION)
 	else:
 		velocity.x = move_toward(velocity.x, 0, FRICTION)
+	
+	if is_alive:
+		move_and_slide()
 
-	move_and_slide()
+func die():
+	$AnimationPlayer.stop()
+	$AnimationPlayer.play("death")
+	$ReticleSprite/Pistol.unequip()
+	$ReticleSprite/Shotgun.unequip()
+	is_alive = false
+	is_player_armed = false
+	$CollisionShape2D.disabled = true
+	await get_tree().create_timer(2).timeout 
+	$HUD/AnimationPlayer.play("death_screen")
+	$UI.hide()
+	await get_tree().create_timer(3).timeout
+	player_died.emit()
 
 func do_weapon_trace():
 	var body = $ReticleSprite/RayCast2D.get_collider()
@@ -205,4 +227,4 @@ func update_score(points: int):
 
 
 func _on_update_score_timer_timeout():
-	update_score(15)
+	update_score(325)

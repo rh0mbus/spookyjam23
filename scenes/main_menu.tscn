@@ -41,7 +41,7 @@ offset_bottom = -19.0
 grow_vertical = 0
 scale = Vector2(0.75, 0.75)
 
-[node name="PlayButton" type="Button" parent="Menu/VBoxContainer"]
+[node name="PlayButton" type="Button" parent="Menu/VBoxContainer" groups=["PlayButton"]]
 texture_filter = 1
 layout_mode = 2
 theme_override_colors/font_hover_color = Color(1, 0.737255, 0.313726, 1)
@@ -53,7 +53,7 @@ icon = ExtResource("3_752gw")
 flat = true
 icon_alignment = 1
 
-[node name="QuitButton" type="Button" parent="Menu/VBoxContainer"]
+[node name="QuitButton" type="Button" parent="Menu/VBoxContainer" groups=["QuitButton"]]
 texture_filter = 1
 layout_mode = 2
 theme_override_colors/font_hover_color = Color(1, 0.737255, 0.313726, 1)

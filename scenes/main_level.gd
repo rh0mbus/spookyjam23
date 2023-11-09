@@ -219,7 +219,7 @@ func _on_player_picked_up_ammo(amount: int):
 	
 func _handle_zombie_death():
 	zombie_count -= 1
-	$Player.update_score(50)
+	$Player.update_score(1250)
 
 func _on_weapon_safe_player_opened_safe():
 	$Player.give_weapons()
@@ -241,8 +241,12 @@ func _on_player_hit_object_with_weapon(location, target_hit):
 		$Particles.add_child(dust_particles)
 		dust_particles.global_position = location
 
-func _handle_spawn_attack_area(position):
+func _handle_spawn_attack_area(spawn_pos):
 	var new_damage_area = attack_area.instantiate() as Area2D
 	$AttackAreaContainer.add_child(new_damage_area)
 	new_damage_area.connect('damage', _on_damage_area_entered)
-	new_damage_area.global_position = position
+	new_damage_area.global_position = spawn_pos
+
+
+func _on_player_player_died():
+	get_tree().reload_current_scene()

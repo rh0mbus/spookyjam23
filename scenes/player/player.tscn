@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://7avrct37qter"]
+[gd_scene load_steps=23 format=3 uid="uid://7avrct37qter"]
 
 [ext_resource type="Script" path="res://scenes/player/player.gd" id="1_r4qlo"]
 [ext_resource type="Texture2D" uid="uid://ckta4qse4styd" path="res://resources/sprites/player_sheet.png" id="2_p43pb"]
@@ -30,6 +30,18 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
 }
 
 [sub_resource type="Animation" id="Animation_rac5u"]
@@ -64,8 +76,8 @@ tracks/0/keys = {
 "values": [0]
 }
 
-[sub_resource type="Animation" id="Animation_t62hy"]
-resource_name = "idle_armed"
+[sub_resource type="Animation" id="Animation_hq882"]
+resource_name = "idle_armed_left"
 length = 0.5
 loop_mode = 1
 tracks/0/type = "value"
@@ -80,9 +92,50 @@ tracks/0/keys = {
 "update": 1,
 "values": [3]
 }
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-1, 1)]
+}
 
-[sub_resource type="Animation" id="Animation_cxbc2"]
-resource_name = "walk_armed"
+[sub_resource type="Animation" id="Animation_t62hy"]
+resource_name = "idle_armed_right"
+length = 0.5
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PlayerSprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [3]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_xueat"]
+resource_name = "walk_armed_left"
 length = 0.3
 loop_mode = 1
 step = 0.05
@@ -97,6 +150,48 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [4, 5]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_cxbc2"]
+resource_name = "walk_armed_right"
+length = 0.3
+loop_mode = 1
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PlayerSprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.15),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [4, 5]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
 }
 
 [sub_resource type="Animation" id="Animation_wxlxr"]
@@ -122,8 +217,10 @@ _data = {
 "RESET": SubResource("Animation_gif4k"),
 "death": SubResource("Animation_rac5u"),
 "idle": SubResource("Animation_hiwoj"),
-"idle_armed": SubResource("Animation_t62hy"),
-"walk_armed": SubResource("Animation_cxbc2"),
+"idle_armed_left": SubResource("Animation_hq882"),
+"idle_armed_right": SubResource("Animation_t62hy"),
+"walk_armed_left": SubResource("Animation_xueat"),
+"walk_armed_right": SubResource("Animation_cxbc2"),
 "walk_unarmed": SubResource("Animation_wxlxr")
 }
 

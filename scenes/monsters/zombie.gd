@@ -21,7 +21,7 @@ var possible_dir = [Vector2.LEFT.x, Vector2.RIGHT.x]
 var direction = Vector2.LEFT.x
 
 func _process(_delta):
-	
+
 	if is_alive:
 		if health <= 0:
 			die()
@@ -29,6 +29,7 @@ func _process(_delta):
 		if is_able_to_move:
 			do_zombie_movement()
 			is_able_to_move = false
+			$ZombieMoanStreamPlayer.play()
 
 func _physics_process(delta):
 	# Add the gravity.
@@ -45,6 +46,10 @@ func _physics_process(delta):
 
 func do_zombie_movement():
 	direction = possible_dir.pick_random()
+	if direction < 0:
+		scale.x = -0.72
+	else:
+		scale.x = 0.72
 	is_moving = true
 	var wait_time = randi_range(1, 3)
 	await get_tree().create_timer(wait_time).timeout
@@ -53,11 +58,10 @@ func do_zombie_movement():
 	is_able_to_move = true
 
 func die():
-	if $AnimationPlayer.is_playing():
-		$AnimationPlayer.stop()
-	$AttackRange/CollisionShape2D.disabled = true
-	$AnimationPlayer.play("death")
 	is_alive = false
+	$AttackRange/CollisionShape2D.disabled = true
+	$AnimationPlayer.stop()
+	$AnimationPlayer.play("death")
 	zombie_death.emit()
 	$ZombieHitbox.disabled = true
 	is_able_to_move = false
@@ -78,3 +82,4 @@ func _on_attack_range_body_entered(body):
 
 func spawn_attack_damage():
 	spawn_damage_area.emit($AtackDamageSpawn.global_position)
+
