@@ -62,7 +62,7 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
 	if Input.is_action_just_pressed("quit"):
-		get_tree().quit()
+		get_tree().reload_current_scene()
 
 	if ammo_box_count >= MAX_AMMO_COUNT:
 		is_ammo_spawnable = false

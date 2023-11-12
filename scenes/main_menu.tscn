@@ -79,7 +79,7 @@ scale = Vector2(2, 2)
 theme_override_colors/font_color = Color(0.501961, 0.427451, 0.568627, 1)
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.423529)
 theme_override_fonts/font = ExtResource("3_1luv4")
-text = "The After Party"
+text = "The Afterparty"
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(128, -84)
